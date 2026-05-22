@@ -29,7 +29,7 @@ const chaosFrames = galleryImages.map((_, index) => {
 
 export default function Gallery() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: "-200px" })
+  const isInView = useInView(containerRef, { once: true, margin: "0px" })
 
   return (
     <section className="relative w-full min-h-screen bg-[#050505] py-32 px-4 md:px-12 z-20 overflow-hidden">

@@ -4,6 +4,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { CalendarPlus, Check, Clock, MapPin, Play, Plus, Ticket, X } from 'lucide-react'
 import type { NetflixItem } from './types'
 
+const MAP_URL = 'https://maps.app.goo.gl/bhebNmonJSe1KHay5'
+
 interface InfoModalProps {
   isOpen: boolean
   onClose: () => void
@@ -22,7 +24,7 @@ const fallbackItem: NetflixItem = {
   rating: 'U/A 13+',
   duration: 'Wedding Premiere',
   quality: '4K',
-  synopsis: 'A private streaming premiere for the people who made their story possible. Season 1 begins on 6 December 2026 in Gujarat.',
+  synopsis: 'A private streaming premiere for the people who made their story possible. Season 1 begins on 6 December 2026 at Hotel Natraj & Resort.',
   cast: 'Sagar, Vandana, Family & Friends',
   genres: 'Romance, Family, Celebration',
   mood: 'Cinematic, Emotional, Grand',
@@ -126,6 +128,16 @@ export default function InfoModal({ isOpen, onClose, data, onPlay }: InfoModalPr
                 <p><span className="text-gray-500">Cast:</span> <span className="text-gray-300">{item.cast || 'Sagar, Vandana, Family & Friends'}</span></p>
                 <p><span className="text-gray-500">Genres:</span> <span className="text-gray-300">{item.genres || 'Romance, Family, Celebration'}</span></p>
                 <p><span className="text-gray-500">This title is:</span> <span className="text-gray-300">{item.mood || 'Premium, Cinematic, Emotional'}</span></p>
+                {(item.type === 'event' || item.id === 'open-map') && (
+                  <a
+                    href={MAP_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex w-full items-center justify-center gap-2 rounded bg-white px-4 py-3 text-sm font-bold text-black transition hover:bg-white/80"
+                  >
+                    <MapPin size={17} /> Open Location
+                  </a>
+                )}
                 <button className="mt-4 flex w-full items-center justify-center gap-2 rounded bg-netflix-red px-4 py-3 text-sm font-bold text-white transition hover:bg-netflix-hover">
                   <Ticket size={17} /> Reserve My Seat
                 </button>

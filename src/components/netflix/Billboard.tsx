@@ -44,7 +44,7 @@ export default function Billboard({ onPlay, onInfo, profile }: BillboardProps) {
         </div>
 
         <p className="mt-4 max-w-xl text-sm leading-7 text-white/90 drop-shadow-md md:mt-6 md:text-lg">
-          Season 1 begins on 6 December 2026. A private streaming premiere for the people who made their story possible.
+          Season 1 premieres at Hotel Natraj & Resort on 6 December 2026. A private wedding series for the people who made their story possible.
         </p>
 
         <div className="mt-4 flex items-center gap-3 md:mt-6">
@@ -65,18 +65,9 @@ export default function Billboard({ onPlay, onInfo, profile }: BillboardProps) {
           </button>
         </div>
 
-        <div className="mt-8 grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-3">
-          {[
-            ['Premiere Date', '6 Dec 2026'],
-            ['Location', 'Gujarat'],
-            ['Profile', profile?.label || 'Guest'],
-          ].map(([label, value]) => (
-            <div key={label} className="border-l-2 border-netflix-red bg-black/25 px-4 py-3 backdrop-blur-sm">
-              <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/45">{label}</p>
-              <p className="mt-1 text-sm font-semibold text-white md:text-base">{value}</p>
-            </div>
-          ))}
-        </div>
+        <p className="mt-7 text-xs font-bold uppercase tracking-[0.26em] text-white/45">
+          6 Dec 2026 | Hotel Natraj & Resort | {profile?.label || 'Guest'} Cut
+        </p>
       </div>
 
       <div className="absolute bottom-[31%] right-0 z-20 hidden items-center md:flex">

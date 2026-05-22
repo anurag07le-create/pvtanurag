@@ -25,7 +25,7 @@ export default function Row({ title, subtitle, items, isLargeRow = false, onItem
   }
 
   return (
-    <section className="row-container group relative mb-11">
+    <section className="row-container group relative mb-14">
       <div className="mb-4 flex flex-col gap-1 md:flex-row md:items-end md:gap-4">
         <h2 className="text-xl font-bold text-white md:text-2xl">{title}</h2>
         {subtitle && <p className="text-sm text-white/45">{subtitle}</p>}
@@ -40,12 +40,12 @@ export default function Row({ title, subtitle, items, isLargeRow = false, onItem
           <ChevronLeft className="text-white" size={32} />
         </button>
 
-        <div ref={rowRef} className="hide-scroll flex items-stretch gap-2 overflow-x-scroll p-1 md:gap-4">
+        <div ref={rowRef} className="hide-scroll flex items-stretch gap-3 overflow-x-scroll p-1 md:gap-5">
           {items.map((item) => (
             <button
               key={item.id}
               onClick={() => onItemClick?.(item)}
-              className={`group/card relative flex-none cursor-pointer text-left transition-transform duration-300 hover:z-50 hover:scale-105 ${isLargeRow ? 'w-[168px] md:w-[250px]' : 'w-[250px] md:w-[320px]'}`}
+              className={`group/card relative flex-none cursor-pointer text-left transition-transform duration-300 hover:z-50 hover:scale-[1.03] ${isLargeRow ? 'w-[168px] md:w-[238px]' : 'w-[260px] md:w-[340px]'}`}
             >
               <div className={`relative w-full overflow-hidden rounded-[4px] bg-zinc-900 netflix-card-shadow ${isLargeRow ? 'aspect-[2/3]' : 'aspect-video'}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -53,11 +53,11 @@ export default function Row({ title, subtitle, items, isLargeRow = false, onItem
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/15 to-transparent" />
                 <div className="absolute left-3 right-3 top-3 flex items-center justify-between">
                   {item.eyebrow && (
-                    <span className="rounded-sm bg-netflix-red px-2 py-1 text-[10px] font-black uppercase tracking-[0.22em] text-white">
+                    <span className="rounded-sm bg-black/65 px-2 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-white/85 backdrop-blur-sm">
                       {item.eyebrow}
                     </span>
                   )}
-                  {item.quality && <span className="ml-auto border border-white/45 px-1 text-[10px] font-bold text-white/80">{item.quality}</span>}
+                  {item.quality && <span className="ml-auto rounded-sm border border-white/25 bg-black/40 px-1 text-[10px] font-bold text-white/65">{item.quality}</span>}
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
                   <h3 className="line-clamp-2 text-sm font-bold text-white drop-shadow-md md:text-lg">{item.title}</h3>

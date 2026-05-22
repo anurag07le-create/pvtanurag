@@ -14,7 +14,7 @@ const episodes = [
   { id: 2, title: 'Episode 2: The Quiet Beginning' },
   { id: 3, title: 'Episode 3: Seven Promises' },
   { id: 4, title: 'Episode 4: Wedding Week' },
-  { id: 5, title: 'Episode 5: Locations & Details' },
+  { id: 5, title: 'Episode 5: Hotel Natraj & Resort' },
 ]
 
 const originLines = [
@@ -63,11 +63,14 @@ export default function NetflixPlayer({ isOpen, onClose }: PlayerProps) {
 
   useEffect(() => {
     if (!isOpen) return
-    setLineStep(0)
+    const resetTimer = window.setTimeout(() => setLineStep(0), 0)
     const timers = [900, 2600, 4300, 6100, 8000].map((delay, index) =>
       window.setTimeout(() => setLineStep(index + 1), delay)
     )
-    return () => timers.forEach(window.clearTimeout)
+    return () => {
+      window.clearTimeout(resetTimer)
+      timers.forEach(window.clearTimeout)
+    }
   }, [currentEpisode, isOpen])
 
   useEffect(() => {
@@ -193,9 +196,11 @@ export default function NetflixPlayer({ isOpen, onClose }: PlayerProps) {
         {currentEpisode === 4 && (
           <div className="card-in grid w-full max-w-5xl gap-4 md:grid-cols-3">
             {[
-              ['Mehendi', '4 Dec', '6:00 PM'],
-              ['Sangeet', '5 Dec', '7:30 PM'],
-              ['Wedding', '6 Dec', '9:00 AM'],
+              ['Mehendi', '5 Dec', '10:00 AM'],
+              ['Behrana', '5 Dec', '8:00 PM'],
+              ['Haldi', '6 Dec', '10:00 AM'],
+              ['Wedding', '6 Dec', '4:00 PM'],
+              ['Reception', '6 Dec', '8:00 PM'],
             ].map(([name, date, time]) => (
               <div key={name} className="border border-white/12 bg-black/35 p-6 text-left backdrop-blur-md">
                 <p className="mb-10 text-[10px] font-black uppercase tracking-[0.3em] text-netflix-red">Wedding Week</p>
@@ -210,8 +215,8 @@ export default function NetflixPlayer({ isOpen, onClose }: PlayerProps) {
           <div className="card-in max-w-xl text-center">
             <MapPin className="mx-auto mb-6 h-10 w-10 text-netflix-red" />
             <p className="mb-4 text-xs font-black uppercase tracking-[0.4em] text-netflix-red">Locations & Details</p>
-            <h2 className="mb-4 text-5xl font-black uppercase md:text-7xl">Gujarat</h2>
-            <p className="text-lg leading-8 text-white/72">The wedding premiere begins on 6 December 2026. Venue, route, RSVP, and guest pass details are available on the main screen.</p>
+            <h2 className="mb-4 text-5xl font-black uppercase md:text-7xl">Hotel Natraj & Resort</h2>
+            <p className="text-lg leading-8 text-white/72">The wedding premiere begins on 6 December 2026. Venue route, RSVP, and guest pass details are available on the main screen.</p>
           </div>
         )}
       </main>

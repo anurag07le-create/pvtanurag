@@ -5,6 +5,7 @@ import LenisProvider from '@/components/cinematic/LenisProvider'
 import Hero from '@/components/cinematic/Hero'
 import Story from '@/components/cinematic/Story'
 import Gallery from '@/components/cinematic/Gallery'
+import Itinerary from '@/components/cinematic/Itinerary'
 import Rsvp from '@/components/cinematic/Rsvp'
 import Cursor from '@/components/cinematic/Cursor'
 import Loader from '@/components/cinematic/Loader'
@@ -49,6 +50,7 @@ export default function CinematicPage() {
           <Hero />
           <Story />
           <Gallery />
+          <Itinerary />
           <Rsvp />
         </div>
 
