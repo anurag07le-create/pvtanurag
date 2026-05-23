@@ -82,22 +82,43 @@ function StoryCard({ event, index }: { event: typeof timelineEvents[0]; index: n
       </motion.div>
 
       {/* Text content */}
-      <motion.div 
-        className="text-center max-w-md px-2"
-        style={{ opacity: textOpacity, y: textY }}
-      >
-        <h3 className="font-serif text-4xl md:text-6xl text-white font-light italic mb-4 md:mb-6 leading-none">
-          {event.title}
-        </h3>
-        
-        <p className="font-sans text-gray-400 font-light text-sm md:text-base leading-relaxed mb-6 md:mb-8">
-          {event.text}
-        </p>
-
-        <div className="text-white/10 font-serif text-6xl md:text-8xl font-bold tracking-tighter select-none">
-          {event.year}
+      <div className="text-center max-w-md px-2 flex flex-col items-center">
+        <div className="overflow-hidden pb-2 mb-4 md:mb-6">
+          <motion.h3 
+            initial={{ y: "100%" }}
+            whileInView={{ y: "0%" }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            className="font-serif text-4xl md:text-6xl text-white font-light italic leading-none"
+          >
+            {event.title}
+          </motion.h3>
         </div>
-      </motion.div>
+        
+        <div className="overflow-hidden mb-6 md:mb-8">
+          <motion.p 
+            initial={{ y: "100%" }}
+            whileInView={{ y: "0%" }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="font-sans text-gray-400 font-light text-sm md:text-base leading-relaxed"
+          >
+            {event.text}
+          </motion.p>
+        </div>
+
+        <div className="overflow-hidden">
+          <motion.div 
+            initial={{ y: "100%" }}
+            whileInView={{ y: "0%" }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+            className="text-white/10 font-serif text-6xl md:text-8xl font-bold tracking-tighter select-none"
+          >
+            {event.year}
+          </motion.div>
+        </div>
+      </div>
     </div>
   )
 }
