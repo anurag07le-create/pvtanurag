@@ -10,6 +10,7 @@ import Gallery from "@/components/cinematic/Gallery";
 import VideoMaskText from "@/components/cinematic/VideoMaskText";
 import ParallaxSection from "@/components/cinematic/ParallaxSection";
 import StackingEvents from "@/components/cinematic/StackingEvents";
+import GoldenThread from "@/components/cinematic/GoldenThread";
 import Footer from "@/components/cinematic/Footer";
 import Cursor from "@/components/cinematic/Cursor";
 import Loader from "@/components/cinematic/Loader";
@@ -58,6 +59,7 @@ export default function CinematicExperience() {
             isLoaded ? "opacity-100" : "opacity-0"
           }`}
         >
+          <GoldenThread />
           <Cursor />
           <AudioPlayer />
           <Hero />
