@@ -49,6 +49,33 @@ export default function InvitationMessage() {
           ))}
         </div>
 
+        {/* Parents Details */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, delay: 0.8 }}
+          className="mt-16 md:mt-24 flex flex-col md:flex-row gap-12 md:gap-32 items-center justify-center text-center w-full"
+        >
+          {/* Sagar's Details */}
+          <div className="flex flex-col items-center">
+            <h3 className="font-serif text-3xl md:text-4xl text-white font-light italic mb-2">Sagar</h3>
+            <p className="font-sans text-[#DAA520]/60 tracking-widest text-[10px] uppercase mb-1">Son of</p>
+            <p className="font-serif text-xl md:text-2xl text-white/80">Manojbhai & Poojaben</p>
+          </div>
+
+          {/* Decorative Divider */}
+          <div className="hidden md:block w-[1px] h-24 bg-gradient-to-b from-transparent via-[#DAA520]/30 to-transparent" />
+          <div className="block md:hidden w-24 h-[1px] bg-gradient-to-r from-transparent via-[#DAA520]/30 to-transparent" />
+
+          {/* Vandana's Details */}
+          <div className="flex flex-col items-center">
+            <h3 className="font-serif text-3xl md:text-4xl text-white font-light italic mb-2">Vandana</h3>
+            <p className="font-sans text-[#DAA520]/60 tracking-widest text-[10px] uppercase mb-1">Daughter of</p>
+            <p className="font-serif text-xl md:text-2xl text-white/80">Ghanshyambhai & Renuben</p>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   )
