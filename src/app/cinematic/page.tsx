@@ -59,7 +59,6 @@ export default function CinematicPage() {
           <Story />
           <Gallery />
           <PopUpBook />
-          <SaptapadiSection />
           <Rsvp />
           <Footer />
         </div>
