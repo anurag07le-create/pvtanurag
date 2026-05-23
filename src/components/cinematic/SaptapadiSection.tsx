@@ -1,7 +1,6 @@
 "use client"
 import React, { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import CanvasFire from '@/components/cinematic/CanvasFire'
 
 const vows = [
   { id: 1, sanskrit: "ॐ इष एकपदी भव", english: "To provide nourishment and stay faithful." },
