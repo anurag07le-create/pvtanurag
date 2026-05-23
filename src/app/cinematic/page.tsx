@@ -6,9 +6,11 @@ import Hero from '@/components/cinematic/Hero'
 import KineticTypography from '@/components/cinematic/KineticTypography'
 import Countdown from '@/components/cinematic/Countdown'
 import Story from '@/components/cinematic/Story'
-import Gallery from '@/components/cinematic/Gallery'
+import HorizontalFilmStrip from '@/components/cinematic/HorizontalFilmStrip'
+import VideoMaskText from '@/components/cinematic/VideoMaskText'
+import ParallaxSection from '@/components/cinematic/ParallaxSection'
+import SvgRippleTransition from '@/components/cinematic/SvgRippleTransition'
 import PopUpBook from '@/components/cinematic/PopUpBook'
-import SaptapadiSection from '@/components/cinematic/SaptapadiSection'
 import Rsvp from '@/components/cinematic/Rsvp'
 import Footer from '@/components/cinematic/Footer'
 import Cursor from '@/components/cinematic/Cursor'
@@ -54,12 +56,14 @@ export default function CinematicPage() {
           <Cursor />
           <AudioPlayer />
           <Hero />
+          <ParallaxSection />
           <KineticTypography />
           <Countdown />
           <Story />
-          <Gallery />
+          <HorizontalFilmStrip />
+          <SvgRippleTransition />
+          <VideoMaskText />
           <PopUpBook />
-          <Rsvp />
           <Footer />
         </div>
 
