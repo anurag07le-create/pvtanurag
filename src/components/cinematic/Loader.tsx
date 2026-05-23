@@ -98,7 +98,7 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
                   You are invited
                 </span>
                 <h3 className="font-serif text-xl md:text-2xl text-white font-light italic text-center leading-tight">
-                  Vandana & Sagar
+                  Sagar & Vandana
                 </h3>
                 <div className="w-8 h-[1px] bg-white/20 mt-3 mb-2" />
                 <span className="font-mono text-[8px] text-white/30 tracking-widest">

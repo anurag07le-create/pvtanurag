@@ -2,16 +2,16 @@
 
 import React, { useEffect, useState } from "react";
 import LenisProvider from "@/components/cinematic/LenisProvider";
-import ParticleHero from "@/components/cinematic/ParticleHero";
+import Hero from "@/components/cinematic/Hero";
 import KineticTypography from "@/components/cinematic/KineticTypography";
 import Countdown from "@/components/cinematic/Countdown";
 import Story from "@/components/cinematic/Story";
-import ScrollTunnel from "@/components/cinematic/ScrollTunnel";
-import EclipseTransition from "@/components/cinematic/EclipseTransition";
+import Gallery from "@/components/cinematic/Gallery";
 import VideoMaskText from "@/components/cinematic/VideoMaskText";
 import ParallaxSection from "@/components/cinematic/ParallaxSection";
 import PopUpBook from "@/components/cinematic/PopUpBook";
 import Itinerary from "@/components/cinematic/Itinerary";
+import Rsvp from "@/components/cinematic/Rsvp";
 import Footer from "@/components/cinematic/Footer";
 import Cursor from "@/components/cinematic/Cursor";
 import Loader from "@/components/cinematic/Loader";
@@ -62,16 +62,16 @@ export default function CinematicExperience() {
         >
           <Cursor />
           <AudioPlayer />
-          <ParticleHero />
+          <Hero />
           <ParallaxSection />
           <KineticTypography />
           <Countdown />
           <Story />
-          <EclipseTransition />
-          <ScrollTunnel />
+          <Gallery />
           <VideoMaskText />
           <PopUpBook />
           <Itinerary />
+          <Rsvp />
           <Footer />
         </div>
       </main>

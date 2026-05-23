@@ -43,17 +43,6 @@ export default function ParallaxSection() {
       onMouseLeave={() => { mouseX.set(0); mouseY.set(0) }}
       className="relative w-full h-screen overflow-hidden bg-black flex items-center justify-center cursor-crosshair z-20"
     >
-      {/* Background Layer (Scenery) */}
-      <motion.div 
-        className="absolute inset-[-10%] z-0"
-        style={{ x: bgX, y: bgY }}
-      >
-        <div 
-          className="w-full h-full bg-cover bg-center opacity-40 blur-sm"
-          style={{ backgroundImage: 'url("/images/photo2.jpeg")' }}
-        />
-      </motion.div>
-
       {/* Foreground Layer (The Couple) */}
       <motion.div 
         className="absolute inset-[-5%] z-10 flex items-center justify-center"
@@ -61,7 +50,7 @@ export default function ParallaxSection() {
       >
         <img
           src="/images/photo3-nobg.png"
-          alt="Vandana and Sagar"
+          alt="Sagar and Vandana"
           className="h-[70vh] w-[88vw] object-contain object-bottom drop-shadow-[0_30px_55px_rgba(0,0,0,0.75)] md:h-[76vh] md:w-[44vw]"
         />
       </motion.div>
