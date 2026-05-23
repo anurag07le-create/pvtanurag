@@ -56,16 +56,14 @@ export default function ParallaxSection() {
         />
       </motion.div>
 
-      {/* Foreground Layer (The Couple cutout) 
-          Using a transparent PNG here creates the 3D effect.
-      */}
+      {/* Foreground Layer (The Couple) */}
       <motion.div 
-        className="absolute inset-[-5%] z-10 flex items-end justify-center pb-20"
+        className="absolute inset-[-5%] z-10 flex items-center justify-center"
         style={{ x: fgX, y: fgY }}
       >
         <div 
-          className="w-[80vw] h-[80vh] md:w-[40vw] bg-contain bg-bottom bg-no-repeat drop-shadow-2xl"
-          style={{ backgroundImage: 'url("https://images.squarespace-cdn.com/content/v1/55bba9bee4b06c8a24559b95/1614713735759-V1Q0A4J09S0Y08D2J0K7/Couple+PNG.png")' }} // Placeholder PNG with transparent background
+          className="w-[80vw] h-[60vh] md:w-[40vw] md:h-[70vh] bg-cover bg-center rounded-sm shadow-2xl"
+          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1583939000240-690e16fb2536?q=80&w=2000&auto=format&fit=crop")' }} 
         />
       </motion.div>
 
