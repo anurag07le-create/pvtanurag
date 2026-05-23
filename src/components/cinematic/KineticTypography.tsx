@@ -71,7 +71,7 @@ function KineticWord({ word, index, totalWords, containerRef }: {
       style={{ opacity, zIndex: 30 }}
     >
       <motion.span
-        className={`font-serif text-[16vw] md:text-[12vw] text-white leading-none select-none whitespace-nowrap ${word.style === 'italic' ? 'italic font-light' : 'font-extralight'}`}
+        className={`font-serif text-[16vw] md:text-[12vw] text-[#1B4332] leading-none select-none whitespace-nowrap ${word.style === 'italic' ? 'italic font-light' : 'font-extralight'}`}
         style={{ scale, y, rotate, x, letterSpacing }}
       >
         {word.text}
@@ -93,7 +93,7 @@ export default function KineticTypography() {
   return (
     <section 
       ref={containerRef} 
-      className="relative z-20 bg-[#050505]"
+      className="relative z-20 bg-[#FDFBF7]"
       style={{ height: `${lines.length * 100}vh` }}
     >
       {/* Sticky viewport container */}

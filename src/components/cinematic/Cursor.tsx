@@ -37,7 +37,7 @@ export default function Cursor() {
 
   return (
     <motion.div
-      className="hidden md:flex fixed top-0 left-0 pointer-events-none z-[100] items-center justify-center rounded-full mix-blend-difference bg-white"
+      className="hidden md:flex fixed top-0 left-0 pointer-events-none z-[100] items-center justify-center rounded-full mix-blend-difference bg-[#1B4332]"
       animate={{
         x: mousePosition.x - (isHovering ? 40 : 10),
         y: mousePosition.y - (isHovering ? 40 : 10),

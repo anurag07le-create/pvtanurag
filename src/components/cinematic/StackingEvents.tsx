@@ -179,12 +179,12 @@ const Card = ({ event, index, total }: { event: typeof events[0], index: number,
 
 export default function StackingEvents() {
   return (
-    <section className="relative w-full bg-[#050505] z-30 pb-[10vh]">
+    <section className="relative w-full bg-[#FDFBF7] z-30 pb-[10vh]">
       <div className="text-center pt-32 pb-16 sticky top-0 z-0">
-        <h2 className="font-serif text-4xl md:text-6xl text-white font-light italic">
+        <h2 className="font-serif text-4xl md:text-6xl text-[#1B4332] font-light italic">
           The Festivities
         </h2>
-        <p className="font-sans text-white/50 text-xs tracking-[0.3em] uppercase mt-4">
+        <p className="font-sans text-[#1B4332]/50 text-xs tracking-[0.3em] uppercase mt-4">
           Scroll to explore
         </p>
       </div>

@@ -51,7 +51,7 @@ export default function SvgRippleTransition() {
           <div className="absolute w-[80vw] h-[80vw] md:w-[40vw] md:h-[40vw] rounded-full bg-gradient-to-tr from-[#020101] via-gray-700 to-white opacity-20 blur-3xl" />
           
           <motion.h2 
-            className="font-serif text-5xl md:text-8xl text-white font-light italic z-10 text-center px-4"
+            className="font-serif text-5xl md:text-8xl text-[#1B4332] font-light italic z-10 text-center px-4"
             style={{ opacity }}
           >
             A Fluid Transition

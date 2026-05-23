@@ -42,7 +42,7 @@ export default function VideoMaskText() {
           </h1>
         </motion.div>
 
-        <p className="absolute bottom-10 w-full text-center font-sans text-white/50 text-xs tracking-[0.5em] uppercase">
+        <p className="absolute bottom-10 w-full text-center font-sans text-[#1B4332]/50 text-xs tracking-[0.5em] uppercase">
           A Cinematic Mask
         </p>
       </div>

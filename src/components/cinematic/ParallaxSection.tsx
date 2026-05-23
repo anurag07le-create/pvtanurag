@@ -60,10 +60,10 @@ export default function ParallaxSection() {
         className="absolute z-20 pointer-events-none text-center"
         style={{ x: textX, y: textY }}
       >
-        <h2 className="font-serif text-5xl md:text-8xl text-white font-light italic drop-shadow-[0_0_30px_rgba(0,0,0,0.8)]">
+        <h2 className="font-serif text-5xl md:text-8xl text-[#1B4332] font-light italic drop-shadow-[0_0_30px_rgba(0,0,0,0.8)]">
           A Love in Focus
         </h2>
-        <p className="font-sans text-white/70 tracking-[0.4em] uppercase text-xs mt-4 drop-shadow-[0_0_10px_rgba(0,0,0,1)]">
+        <p className="font-sans text-[#1B4332]/70 tracking-[0.4em] uppercase text-xs mt-4 drop-shadow-[0_0_10px_rgba(0,0,0,1)]">
           Sagar and Vandana
         </p>
       </motion.div>

@@ -52,7 +52,7 @@ export default function Countdown() {
   ]
 
   return (
-    <section className="relative w-full min-h-[80dvh] md:min-h-[100dvh] bg-[#050505] flex flex-col items-center justify-center py-20 px-4 z-20 overflow-hidden">
+    <section className="relative w-full min-h-[80dvh] md:min-h-[100dvh] bg-[#FDFBF7] flex flex-col items-center justify-center py-20 px-4 z-20 overflow-hidden">
       
       {/* Ambient glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(180,140,60,0.08)_0%,transparent_60%)] pointer-events-none" />
@@ -93,7 +93,7 @@ export default function Countdown() {
         <span className="font-sans text-amber-500/60 text-[10px] md:text-xs tracking-[0.5em] uppercase block mb-3">
           Counting Down To
         </span>
-        <h2 className="font-serif text-4xl md:text-7xl text-white font-light italic">
+        <h2 className="font-serif text-4xl md:text-7xl text-[#1B4332] font-light italic">
           The Big Day
         </h2>
       </motion.div>
@@ -107,7 +107,7 @@ export default function Countdown() {
           <h3 className="font-serif text-5xl md:text-8xl text-amber-400 font-light italic mb-4">
             The Day Has Arrived
           </h3>
-          <p className="font-sans text-white/40 text-sm tracking-[0.3em] uppercase">
+          <p className="font-sans text-[#1B4332]/40 text-sm tracking-[0.3em] uppercase">
             Let the celebrations begin
           </p>
         </motion.div>
@@ -121,7 +121,7 @@ export default function Countdown() {
         >
           {blocks.map((block) => (
             <div key={block.label} className="flex flex-col items-center">
-              <div className="relative w-[72px] h-[90px] md:w-[140px] md:h-[160px] border border-white/10 bg-white/[0.03] backdrop-blur-sm rounded-lg flex items-center justify-center overflow-hidden">
+              <div className="relative w-[72px] h-[90px] md:w-[140px] md:h-[160px] border border-[#1B4332]/10 bg-[#1B4332]/[0.03] backdrop-blur-sm rounded-lg flex items-center justify-center overflow-hidden">
                 {/* Subtle shimmer */}
                 <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
                 
@@ -129,12 +129,12 @@ export default function Countdown() {
                   key={time ? block.value : 'ssr'}
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  className="font-serif text-3xl md:text-6xl text-white font-light tabular-nums"
+                  className="font-serif text-3xl md:text-6xl text-[#1B4332] font-light tabular-nums"
                 >
                   {typeof block.value === 'number' ? String(block.value).padStart(2, '0') : '--'}
                 </motion.span>
               </div>
-              <span className="font-sans text-white/30 text-[9px] md:text-xs tracking-[0.3em] uppercase mt-3 md:mt-4">
+              <span className="font-sans text-[#1B4332]/30 text-[9px] md:text-xs tracking-[0.3em] uppercase mt-3 md:mt-4">
                 {block.label}
               </span>
             </div>
@@ -150,7 +150,7 @@ export default function Countdown() {
         transition={{ duration: 1, delay: 0.6 }}
         className="mt-12 md:mt-20 text-center relative z-10"
       >
-        <p className="font-mono text-[10px] md:text-xs text-white/20 tracking-[0.2em]">
+        <p className="font-mono text-[10px] md:text-xs text-[#1B4332]/20 tracking-[0.2em]">
           6th December 2026 | 4:00 PM
         </p>
       </motion.div>

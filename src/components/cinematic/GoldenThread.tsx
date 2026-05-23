@@ -29,7 +29,7 @@ export default function GoldenThread() {
   return (
     <div className="fixed top-0 bottom-0 left-6 md:left-16 w-[1px] md:w-[2px] z-[100] pointer-events-none">
       {/* Background Track */}
-      <div className="absolute inset-0 bg-white/5" />
+      <div className="absolute inset-0 bg-[#1B4332]/5" />
       
       {/* The Thread */}
       <motion.div 

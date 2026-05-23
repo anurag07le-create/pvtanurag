@@ -21,8 +21,8 @@ export default function CinematicExperience() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    document.body.style.backgroundColor = "#050505";
-    document.documentElement.style.backgroundColor = "#050505";
+    document.body.style.backgroundColor = "#FDFBF7";
+    document.documentElement.style.backgroundColor = "#FDFBF7";
     return () => {
       document.body.style.backgroundColor = "";
       document.documentElement.style.backgroundColor = "";
@@ -31,7 +31,7 @@ export default function CinematicExperience() {
 
   return (
     <LenisProvider>
-      <main className="min-h-[100dvh] bg-[#050505] font-sans text-[#f5f5f5] selection:bg-white selection:text-black">
+      <main className="min-h-[100dvh] bg-[#FDFBF7] font-sans text-[#f5f5f5] selection:bg-[#1B4332] selection:text-black">
         <style
           dangerouslySetInnerHTML={{
             __html: `
@@ -41,7 +41,7 @@ export default function CinematicExperience() {
           .font-sans { font-family: 'Inter', sans-serif; }
 
           html, body {
-            background-color: #050505;
+            background-color: #FDFBF7;
             -webkit-tap-highlight-color: transparent;
             -webkit-text-size-adjust: 100%;
           }

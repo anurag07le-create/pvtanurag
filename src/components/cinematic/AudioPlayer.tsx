@@ -40,13 +40,13 @@ export default function AudioPlayer({ autoStart = false }: { autoStart?: boolean
       
       <button 
         onClick={togglePlay}
-        className="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center active:scale-95 transition-transform"
+        className="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#1B4332]/10 backdrop-blur-md border border-[#1B4332]/20 flex items-center justify-center active:scale-95 transition-transform"
         aria-label={isPlaying ? 'Pause music' : 'Play music'}
       >
         {/* Pulsing ring when not playing */}
         {!isPlaying && (
           <motion.div
-            className="absolute inset-0 rounded-full border border-white/30"
+            className="absolute inset-0 rounded-full border border-[#1B4332]/30"
             animate={{ scale: [1, 1.4, 1], opacity: [0.5, 0, 0.5] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -58,7 +58,7 @@ export default function AudioPlayer({ autoStart = false }: { autoStart?: boolean
             {[...Array(4)].map((_, i) => (
               <motion.div
                 key={i}
-                className="w-[3px] bg-white rounded-full"
+                className="w-[3px] bg-[#1B4332] rounded-full"
                 animate={{ 
                   height: ["6px", "18px", "10px", "14px", "6px"]
                 }}
@@ -73,7 +73,7 @@ export default function AudioPlayer({ autoStart = false }: { autoStart?: boolean
           </div>
         ) : (
           /* Play icon */
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" className="ml-1">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#1B4332" className="ml-1">
             <polygon points="5,3 19,12 5,21" />
           </svg>
         )}

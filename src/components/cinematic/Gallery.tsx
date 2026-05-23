@@ -49,7 +49,7 @@ function PhotoCard({ src, index }: { src: string; index: number }) {
       
       {/* Subtle overlay that fades out */}
       <motion.div 
-        className="absolute inset-0 bg-[#050505] pointer-events-none"
+        className="absolute inset-0 bg-[#FDFBF7] pointer-events-none"
         style={{ opacity: useTransform(scrollYProgress, [0, 0.5], [0.6, 0]) }}
       />
     </motion.div>
@@ -58,7 +58,7 @@ function PhotoCard({ src, index }: { src: string; index: number }) {
 
 export default function Gallery() {
   return (
-    <section className="relative w-full min-h-[100dvh] bg-[#050505] py-20 md:py-32 px-4 md:px-12 z-20 overflow-hidden">
+    <section className="relative w-full min-h-[100dvh] bg-[#FDFBF7] py-20 md:py-32 px-4 md:px-12 z-20 overflow-hidden">
       
       <div className="text-center mb-16 md:mb-24">
         <motion.h2 
@@ -66,7 +66,7 @@ export default function Gallery() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="font-serif text-4xl md:text-7xl text-white font-light mb-3 md:mb-4"
+          className="font-serif text-4xl md:text-7xl text-[#1B4332] font-light mb-3 md:mb-4"
         >
           The Archive
         </motion.h2>

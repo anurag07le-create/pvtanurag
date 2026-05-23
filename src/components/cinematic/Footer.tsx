@@ -77,7 +77,7 @@ function handleWhatsAppShare() {
 
 export default function Footer() {
   return (
-    <section className="relative w-full bg-[#050505] py-20 md:py-32 px-4 z-20">
+    <section className="relative w-full bg-[#FDFBF7] py-20 md:py-32 px-4 z-20">
       <div className="max-w-lg mx-auto text-center">
 
         {/* Elegant sign-off */}
@@ -87,14 +87,14 @@ export default function Footer() {
           viewport={{ once: true }}
           transition={{ duration: 1 }}
         >
-          <h3 className="font-serif text-3xl md:text-5xl text-white font-light italic mb-4 leading-tight">
+          <h3 className="font-serif text-3xl md:text-5xl text-[#1B4332] font-light italic mb-4 leading-tight">
             With Love,
           </h3>
-          <p className="font-serif text-2xl md:text-4xl text-white/60 font-light italic mb-2">
+          <p className="font-serif text-2xl md:text-4xl text-[#1B4332]/60 font-light italic mb-2">
             Vandana & Sagar
           </p>
-          <div className="w-12 h-[1px] bg-white/20 mx-auto mt-4 mb-8" />
-          <p className="font-sans text-white/30 text-[10px] md:text-xs tracking-[0.3em] uppercase">
+          <div className="w-12 h-[1px] bg-[#1B4332]/20 mx-auto mt-4 mb-8" />
+          <p className="font-sans text-[#1B4332]/30 text-[10px] md:text-xs tracking-[0.3em] uppercase">
             & Our Beloved Families
           </p>
         </motion.div>
@@ -121,7 +121,7 @@ export default function Footer() {
           {/* Save to Calendar */}
           <button
             onClick={handleDownloadCalendar}
-            className="w-full flex items-center justify-center gap-3 bg-white/5 border border-white/15 text-white py-4 px-6 rounded-lg text-sm font-sans tracking-widest uppercase hover:bg-white/10 active:scale-[0.98] transition-all"
+            className="w-full flex items-center justify-center gap-3 bg-[#1B4332]/5 border border-[#1B4332]/15 text-[#1B4332] py-4 px-6 rounded-lg text-sm font-sans tracking-widest uppercase hover:bg-[#1B4332]/10 active:scale-[0.98] transition-all"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -141,7 +141,7 @@ export default function Footer() {
           transition={{ duration: 1, delay: 0.6 }}
           className="mt-20 md:mt-28"
         >
-          <p className="font-mono text-white/10 text-[9px] tracking-widest uppercase">
+          <p className="font-mono text-[#1B4332]/10 text-[9px] tracking-widest uppercase">
             Made with love | December 2026
           </p>
         </motion.div>

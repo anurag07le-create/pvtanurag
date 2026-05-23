@@ -10,7 +10,7 @@ export default function InvitationMessage() {
   ]
 
   return (
-    <section className="relative w-full bg-[#050505] z-20 py-32 md:py-48 flex items-center justify-center px-4">
+    <section className="relative w-full bg-[#FDFBF7] z-20 py-32 md:py-48 flex items-center justify-center px-4">
       <div className="text-center max-w-4xl flex flex-col items-center">
         
         {/* Subtle decorative lotus element */}
@@ -41,7 +41,7 @@ export default function InvitationMessage() {
                   ease: [0.16, 1, 0.3, 1], 
                   delay: index * 0.2 // Stagger each line
                 }}
-                className="font-serif text-3xl md:text-5xl lg:text-7xl text-white/90 font-light italic leading-tight"
+                className="font-serif text-3xl md:text-5xl lg:text-7xl text-[#1B4332]/90 font-light italic leading-tight"
               >
                 {line}
               </motion.h2>
@@ -59,9 +59,9 @@ export default function InvitationMessage() {
         >
           {/* Sagar's Details */}
           <div className="flex flex-col items-center">
-            <h3 className="font-serif text-3xl md:text-4xl text-white font-light italic mb-2">Sagar</h3>
+            <h3 className="font-serif text-3xl md:text-4xl text-[#1B4332] font-light italic mb-2">Sagar</h3>
             <p className="font-sans text-[#DAA520]/60 tracking-widest text-[10px] uppercase mb-1">Son of</p>
-            <p className="font-serif text-xl md:text-2xl text-white/80">Manojbhai & Poojaben</p>
+            <p className="font-serif text-xl md:text-2xl text-[#1B4332]/80">Manojbhai & Poojaben</p>
           </div>
 
           {/* Decorative Divider */}
@@ -70,9 +70,9 @@ export default function InvitationMessage() {
 
           {/* Vandana's Details */}
           <div className="flex flex-col items-center">
-            <h3 className="font-serif text-3xl md:text-4xl text-white font-light italic mb-2">Vandana</h3>
+            <h3 className="font-serif text-3xl md:text-4xl text-[#1B4332] font-light italic mb-2">Vandana</h3>
             <p className="font-sans text-[#DAA520]/60 tracking-widest text-[10px] uppercase mb-1">Daughter of</p>
-            <p className="font-serif text-xl md:text-2xl text-white/80">Ghanshyambhai & Renuben</p>
+            <p className="font-serif text-xl md:text-2xl text-[#1B4332]/80">Ghanshyambhai & Renuben</p>
           </div>
         </motion.div>
 

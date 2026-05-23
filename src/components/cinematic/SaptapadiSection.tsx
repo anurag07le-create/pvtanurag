@@ -50,7 +50,7 @@ export default function SaptapadiSection() {
           <h2 className="font-serif text-3xl md:text-5xl text-[#ffcda3] font-light italic mb-4">
             The Saptapadi
           </h2>
-          <p className="font-sans text-white/60 text-xs md:text-sm tracking-[0.2em] uppercase max-w-md mx-auto leading-relaxed">
+          <p className="font-sans text-[#1B4332]/60 text-xs md:text-sm tracking-[0.2em] uppercase max-w-md mx-auto leading-relaxed">
             As we prepare to walk the seven steps around the sacred fire.
           </p>
           
@@ -107,7 +107,7 @@ export default function SaptapadiSection() {
                 <p className="font-sans text-[#ffcda3]/50 text-xs md:text-sm tracking-[0.5em] uppercase">
                   Vow {vow.id}
                 </p>
-                <h3 className="font-serif text-4xl md:text-6xl text-white font-light leading-tight drop-shadow-[0_0_15px_rgba(255,205,163,0.3)]">
+                <h3 className="font-serif text-4xl md:text-6xl text-[#1B4332] font-light leading-tight drop-shadow-[0_0_15px_rgba(255,205,163,0.3)]">
                   {vow.sanskrit}
                 </h3>
                 <p className="font-serif text-2xl md:text-3xl text-[#ffcda3] italic font-light">
@@ -127,7 +127,7 @@ export default function SaptapadiSection() {
           style={{ opacity: outroOpacity, pointerEvents: 'none' }}
         >
           <div className="max-w-xl mx-auto">
-            <h2 className="font-serif text-4xl md:text-6xl text-white font-light italic mb-6 leading-tight">
+            <h2 className="font-serif text-4xl md:text-6xl text-[#1B4332] font-light italic mb-6 leading-tight">
               We seek your Aashirwad
             </h2>
             <p className="font-sans text-[#ffcda3]/80 text-sm md:text-base tracking-widest uppercase leading-relaxed">

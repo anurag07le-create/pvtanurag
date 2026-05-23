@@ -45,11 +45,11 @@ export default function Rsvp() {
   }
 
   return (
-    <section className="relative w-full min-h-[100dvh] bg-[#050505] flex flex-col items-center justify-center py-24 px-4 z-20 perspective-[2000px]">
+    <section className="relative w-full min-h-[100dvh] bg-[#FDFBF7] flex flex-col items-center justify-center py-24 px-4 z-20 perspective-[2000px]">
       
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(40,20,20,0.3)_0%,#050505_60%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(40,20,20,0.3)_0%,#FDFBF7_60%)] pointer-events-none" />
 
-      <h2 className="text-white/40 font-sans text-xs tracking-[0.5em] uppercase mb-16 relative z-10 text-center">
+      <h2 className="text-[#1B4332]/40 font-sans text-xs tracking-[0.5em] uppercase mb-16 relative z-10 text-center">
         Your Presence Is Requested
       </h2>
 
@@ -68,7 +68,7 @@ export default function Rsvp() {
       >
         
         {/* Ticket Surface */}
-        <div className="absolute inset-0 bg-white/5 border border-white/20 rounded-lg backdrop-blur-md overflow-hidden flex flex-col items-center justify-center p-8 md:p-12 shadow-[0_30px_60px_rgba(0,0,0,0.8)]">
+        <div className="absolute inset-0 bg-[#1B4332]/5 border border-[#1B4332]/20 rounded-lg backdrop-blur-md overflow-hidden flex flex-col items-center justify-center p-8 md:p-12 shadow-[0_30px_60px_rgba(0,0,0,0.8)]">
           
           {/* Dynamic Glare/Sheen */}
           <motion.div 
@@ -78,7 +78,7 @@ export default function Rsvp() {
 
           {!submitted ? (
             <div className="relative z-10 w-full text-center" style={{ transform: "translateZ(50px)" }}>
-              <h3 className="font-serif text-3xl md:text-5xl text-white font-light italic mb-8">
+              <h3 className="font-serif text-3xl md:text-5xl text-[#1B4332] font-light italic mb-8">
                 Admit One
               </h3>
               <form onSubmit={handleSubmit} className="flex flex-col items-center w-full">
@@ -87,12 +87,12 @@ export default function Rsvp() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="ENTER GUEST NAME" 
-                  className="w-3/4 md:w-1/2 bg-transparent border-b border-white/30 pb-2 text-center text-white text-sm font-sans tracking-[0.2em] placeholder:text-white/30 focus:outline-none focus:border-white transition-colors"
+                  className="w-3/4 md:w-1/2 bg-transparent border-b border-[#1B4332]/30 pb-2 text-center text-[#1B4332] text-sm font-sans tracking-[0.2em] placeholder:text-[#1B4332]/30 focus:outline-none focus:border-[#1B4332] transition-colors"
                   required
                 />
                 <button 
                   type="submit"
-                  className="mt-10 uppercase tracking-[0.3em] text-[10px] font-bold font-sans text-black bg-white py-3 px-8 hover:bg-gray-200 transition-colors"
+                  className="mt-10 uppercase tracking-[0.3em] text-[10px] font-bold font-sans text-black bg-[#1B4332] py-3 px-8 hover:bg-gray-200 transition-colors"
                 >
                   Confirm RSVP
                 </button>
@@ -105,7 +105,7 @@ export default function Rsvp() {
               animate={{ opacity: 1, scale: 1 }}
               style={{ transform: "translateZ(50px)" }}
             >
-              <h3 className="font-serif text-3xl md:text-5xl text-white font-light mb-4">
+              <h3 className="font-serif text-3xl md:text-5xl text-[#1B4332] font-light mb-4">
                 Confirmed.
               </h3>
               <p className="font-sans text-gray-400 font-light tracking-[0.2em] text-xs uppercase">
@@ -115,11 +115,11 @@ export default function Rsvp() {
           )}
 
           {/* Ticket Barcode details */}
-          <div className="absolute bottom-4 left-6 right-6 flex justify-between items-end opacity-40 font-mono text-[8px] tracking-widest text-white pointer-events-none">
+          <div className="absolute bottom-4 left-6 right-6 flex justify-between items-end opacity-40 font-mono text-[8px] tracking-widest text-[#1B4332] pointer-events-none">
             <span>DEC 06 2026</span>
             <div className="flex gap-1 h-6">
               {[...Array(20)].map((_, i) => (
-                <div key={i} className="bg-white w-[1px]" style={{ opacity: i % 3 === 0 || i % 5 === 0 ? 1 : 0.2 }} />
+                <div key={i} className="bg-[#1B4332] w-[1px]" style={{ opacity: i % 3 === 0 || i % 5 === 0 ? 1 : 0.2 }} />
               ))}
             </div>
             <span>VIP ACCESS</span>

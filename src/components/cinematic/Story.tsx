@@ -37,89 +37,53 @@ function StoryCard({ event, index }: { event: typeof timelineEvents[0]; index: n
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "center center"]
   })
 
-  // Image clips open diagonally as you scroll in
-  const clipPath = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.5],
-    [
-      "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
-      "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-      "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
-    ]
-  )
-
-  const imageScale = useTransform(scrollYProgress, [0, 0.5], [1.3, 1])
-  const textOpacity = useTransform(scrollYProgress, [0.15, 0.35], [0, 1])
-  const textY = useTransform(scrollYProgress, [0.15, 0.35], [40, 0])
+  // Simple elegant fade and slide in
+  const yOffset = useTransform(scrollYProgress, [0, 1], [100, 0])
+  const opacity = useTransform(scrollYProgress, [0.2, 0.8], [0, 1])
+  
+  const isEven = index % 2 === 0
 
   return (
-    <div ref={ref} className="min-h-[100dvh] flex flex-col items-center justify-center px-4 md:px-12 py-16 md:py-0 relative">
+    <motion.div 
+      ref={ref} 
+      style={{ opacity, y: yOffset }}
+      className={`py-12 md:py-20 flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-16 px-4 md:px-12 relative max-w-6xl mx-auto`}
+    >
       
-      {/* Phase label */}
-      <motion.span 
-        style={{ opacity: textOpacity }}
-        className="font-sans text-amber-500/50 tracking-[0.4em] uppercase text-[10px] md:text-xs font-bold mb-6 md:mb-8"
-      >
-        Phase 0{index + 1}
-      </motion.span>
-
-      {/* Image with clip-path reveal */}
-      <motion.div 
-        className="w-full max-w-sm md:max-w-lg aspect-[4/5] md:aspect-[3/4] relative overflow-hidden bg-black rounded-sm mb-8 md:mb-12"
-        style={{ clipPath }}
-      >
-        <motion.img 
-          src={event.image} 
-          alt={event.title}
-          className="w-full h-full object-cover"
-          style={{ scale: imageScale }}
-        />
-        {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
-      </motion.div>
-
-      {/* Text content */}
-      <div className="text-center max-w-md px-2 flex flex-col items-center">
-        <div className="overflow-hidden pb-2 mb-4 md:mb-6">
-          <motion.h3 
-            initial={{ y: "100%" }}
-            whileInView={{ y: "0%" }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="font-serif text-4xl md:text-6xl text-white font-light italic leading-none"
-          >
-            {event.title}
-          </motion.h3>
-        </div>
-        
-        <div className="overflow-hidden mb-6 md:mb-8">
-          <motion.p 
-            initial={{ y: "100%" }}
-            whileInView={{ y: "0%" }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="font-sans text-gray-400 font-light text-sm md:text-base leading-relaxed"
-          >
-            {event.text}
-          </motion.p>
-        </div>
-
-        <div className="overflow-hidden">
-          <motion.div 
-            initial={{ y: "100%" }}
-            whileInView={{ y: "0%" }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            className="text-white/10 font-serif text-6xl md:text-8xl font-bold tracking-tighter select-none"
-          >
-            {event.year}
-          </motion.div>
+      {/* Image Side */}
+      <div className="w-full md:w-1/2 flex justify-center">
+        <div className="w-full max-w-sm aspect-[4/5] relative overflow-hidden rounded-sm shadow-2xl border border-[#1B4332]/10">
+          <img 
+            src={event.image} 
+            alt={event.title}
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
-    </div>
+
+      {/* Text Side */}
+      <div className={`w-full md:w-1/2 flex flex-col ${isEven ? 'items-start text-left' : 'items-start md:items-end text-left md:text-right'}`}>
+        <span className="font-sans text-amber-600/70 tracking-[0.4em] uppercase text-[10px] font-bold mb-4">
+          Phase 0{index + 1}
+        </span>
+        
+        <h3 className="font-serif text-4xl md:text-5xl text-[#1B4332] font-light italic leading-tight mb-4">
+          {event.title}
+        </h3>
+        
+        <p className="font-sans text-[#1B4332]/70 font-light text-sm md:text-base leading-relaxed max-w-md mb-6">
+          {event.text}
+        </p>
+
+        <div className="text-[#1B4332]/10 font-serif text-5xl md:text-7xl font-bold tracking-tighter select-none">
+          {event.year}
+        </div>
+      </div>
+      
+    </motion.div>
   )
 }
 
@@ -134,7 +98,7 @@ export default function Story() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"])
 
   return (
-    <section ref={containerRef} className="relative bg-[#050505] z-20 overflow-hidden">
+    <section ref={containerRef} className="relative bg-[#FDFBF7] z-20 overflow-hidden">
       
       {/* Sanskrit Whispers Background */}
       <motion.div 
@@ -162,7 +126,7 @@ export default function Story() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="font-serif text-4xl md:text-7xl text-white font-light italic mb-3 md:mb-4 text-center"
+          className="font-serif text-4xl md:text-7xl text-[#1B4332] font-light italic mb-3 md:mb-4 text-center"
         >
           Our Story
         </motion.h2>
@@ -171,7 +135,7 @@ export default function Story() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="font-sans text-white/40 tracking-[0.4em] text-[10px] md:text-xs uppercase"
+          className="font-sans text-[#1B4332]/40 tracking-[0.4em] text-[10px] md:text-xs uppercase"
         >
           How it all began
         </motion.p>

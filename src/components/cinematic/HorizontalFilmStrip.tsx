@@ -27,7 +27,7 @@ export default function HorizontalFilmStrip() {
       {/* Sticky container that stays on screen while we "scroll horizontally" */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center">
         
-        <div className="absolute top-10 left-10 z-10 mix-blend-difference text-white">
+        <div className="absolute top-10 left-10 z-10 mix-blend-difference text-[#1B4332]">
           <p className="font-sans text-xs tracking-[0.4em] uppercase mb-2">The Gallery</p>
           <h2 className="font-serif text-3xl italic font-light">A Cinematic Timeline</h2>
         </div>
@@ -60,7 +60,7 @@ export default function HorizontalFilmStrip() {
                 </div>
                 
                 {/* Minimalist Captions */}
-                <div className="absolute -bottom-8 left-0 flex items-center justify-between w-full font-sans text-white/50 text-[10px] tracking-widest uppercase">
+                <div className="absolute -bottom-8 left-0 flex items-center justify-between w-full font-sans text-[#1B4332]/50 text-[10px] tracking-widest uppercase">
                   <span>FRAME 0{index + 1}</span>
                   <span>THE UNION</span>
                 </div>
