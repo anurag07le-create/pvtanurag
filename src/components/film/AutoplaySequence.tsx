@@ -28,8 +28,8 @@ export default function AutoplaySequence() {
   // Framer Motion configuration for smooth fading between scenes
   const fadeVariants = {
     initial: { opacity: 0, filter: "blur(10px)", scale: 0.95 },
-    animate: { opacity: 1, filter: "blur(0px)", scale: 1, transition: { duration: 2, ease: "easeOut" } },
-    exit: { opacity: 0, filter: "blur(10px)", scale: 1.05, transition: { duration: 1.5, ease: "easeIn" } }
+    animate: { opacity: 1, filter: "blur(0px)", scale: 1, transition: { duration: 2, ease: "easeOut" as const } },
+    exit: { opacity: 0, filter: "blur(10px)", scale: 1.05, transition: { duration: 1.5, ease: "easeIn" as const } }
   }
 
   return (
