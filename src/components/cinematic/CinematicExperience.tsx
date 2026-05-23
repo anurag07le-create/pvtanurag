@@ -11,6 +11,7 @@ import VideoMaskText from "@/components/cinematic/VideoMaskText";
 import ParallaxSection from "@/components/cinematic/ParallaxSection";
 import StackingEvents from "@/components/cinematic/StackingEvents";
 import GoldenThread from "@/components/cinematic/GoldenThread";
+import InvitationMessage from "@/components/cinematic/InvitationMessage";
 import Footer from "@/components/cinematic/Footer";
 import Cursor from "@/components/cinematic/Cursor";
 import Loader from "@/components/cinematic/Loader";
@@ -63,6 +64,7 @@ export default function CinematicExperience() {
           <Cursor />
           <AudioPlayer />
           <Hero />
+          <InvitationMessage />
           <KineticTypography />
           <Countdown />
           <Story />
