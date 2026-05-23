@@ -70,7 +70,7 @@ function handleDownloadCalendar() {
 
 function handleWhatsAppShare() {
   const message = encodeURIComponent(
-    `✨ You're invited to Vandana & Sagar's Wedding! 💍\n\n📅 5th-6th December 2026\n📍 Location: https://maps.app.goo.gl/bhebNmonJSe1KHay5\n\n🌐 View the invitation: ${typeof window !== 'undefined' ? window.location.href : ''}\n\nWe can't wait to celebrate with you! 🎉`
+    `You're invited to Vandana & Sagar's wedding!\n\n5th-6th December 2026\nLocation: https://maps.app.goo.gl/bhebNmonJSe1KHay5\n\nView the invitation: ${typeof window !== 'undefined' ? window.location.href : ''}\n\nWe can't wait to celebrate with you.`
   )
   window.open(`https://wa.me/?text=${message}`, '_blank')
 }
@@ -142,7 +142,7 @@ export default function Footer() {
           className="mt-20 md:mt-28"
         >
           <p className="font-mono text-white/10 text-[9px] tracking-widest uppercase">
-            Made with love • December 2026
+            Made with love | December 2026
           </p>
         </motion.div>
 

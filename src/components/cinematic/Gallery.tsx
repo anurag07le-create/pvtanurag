@@ -1,6 +1,6 @@
 "use client"
 import React, { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useMotionTemplate, useScroll, useTransform } from 'framer-motion'
 
 const originalImages = [
   '/images/photo1.jpeg',
@@ -18,12 +18,13 @@ function PhotoCard({ src, index }: { src: string; index: number }) {
     offset: ["start end", "center center"]
   })
 
-  // Film developing effect: blur → sharp, dark → bright
+  // Film developing effect: blur to sharp, dark to bright.
   const blur = useTransform(scrollYProgress, [0, 0.6, 1], [12, 4, 0])
   const brightness = useTransform(scrollYProgress, [0, 0.6, 1], [0.2, 0.6, 1])
   const grayscale = useTransform(scrollYProgress, [0, 0.8, 1], [1, 0.5, 0])
   const scale = useTransform(scrollYProgress, [0, 1], [0.92, 1])
   const imgOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1])
+  const filter = useMotionTemplate`blur(${blur}px) brightness(${brightness}) grayscale(${grayscale})`
 
   return (
     <motion.div
@@ -42,10 +43,7 @@ function PhotoCard({ src, index }: { src: string; index: number }) {
           src={src} 
           alt={`Memory ${index + 1}`}
           className="w-full h-auto object-cover"
-          style={{
-            filter: `blur(${blur}px) brightness(${brightness}) grayscale(${grayscale})` as any,
-          }}
-          // Framer motion doesn't interpolate filter strings well, so we use individual transforms
+          style={{ filter }}
         />
       </motion.div>
       

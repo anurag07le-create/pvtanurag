@@ -116,7 +116,7 @@ export default function Itinerary() {
                     <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                     
                     <span className="font-mono text-white/30 text-[10px] tracking-[0.2em] uppercase block mb-4">
-                      {event.date} • {event.time}
+                      {event.date} | {event.time}
                     </span>
                     
                     <h3 className="font-serif text-3xl md:text-5xl text-white font-light italic mb-4">

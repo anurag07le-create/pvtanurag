@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
 export default function ParallaxSection() {
@@ -36,8 +36,6 @@ export default function ParallaxSection() {
     mouseY.set(y)
   }
 
-  // Fallback for mobile devices (gyroscope could be added here, but for now we just use a static beautiful layout if no mouse)
-  
   return (
     <section 
       ref={containerRef}
@@ -52,7 +50,7 @@ export default function ParallaxSection() {
       >
         <div 
           className="w-full h-full bg-cover bg-center opacity-40 blur-sm"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1516104276722-e42100dc89d5?q=80&w=2000&auto=format&fit=crop")' }}
+          style={{ backgroundImage: 'url("/images/photo2.jpeg")' }}
         />
       </motion.div>
 
@@ -61,9 +59,10 @@ export default function ParallaxSection() {
         className="absolute inset-[-5%] z-10 flex items-center justify-center"
         style={{ x: fgX, y: fgY }}
       >
-        <div 
-          className="w-[80vw] h-[60vh] md:w-[40vw] md:h-[70vh] bg-cover bg-center rounded-sm shadow-2xl"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1583939000240-690e16fb2536?q=80&w=2000&auto=format&fit=crop")' }} 
+        <img
+          src="/images/photo3-nobg.png"
+          alt="Vandana and Sagar"
+          className="h-[70vh] w-[88vw] object-contain object-bottom drop-shadow-[0_30px_55px_rgba(0,0,0,0.75)] md:h-[76vh] md:w-[44vw]"
         />
       </motion.div>
 
@@ -73,10 +72,10 @@ export default function ParallaxSection() {
         style={{ x: textX, y: textY }}
       >
         <h2 className="font-serif text-5xl md:text-8xl text-white font-light italic drop-shadow-[0_0_30px_rgba(0,0,0,0.8)]">
-          The Depth of Love
+          A Love in Focus
         </h2>
         <p className="font-sans text-white/70 tracking-[0.4em] uppercase text-xs mt-4 drop-shadow-[0_0_10px_rgba(0,0,0,1)]">
-          Move your cursor
+          Sagar and Vandana
         </p>
       </motion.div>
 

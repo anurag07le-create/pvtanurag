@@ -1,71 +1,18 @@
-"use client"
+import type { Metadata } from "next";
+import CinematicExperience from "@/components/cinematic/CinematicExperience";
 
-import React, { useEffect, useState } from 'react'
-import LenisProvider from '@/components/cinematic/LenisProvider'
-import Hero from '@/components/cinematic/Hero'
-import KineticTypography from '@/components/cinematic/KineticTypography'
-import Countdown from '@/components/cinematic/Countdown'
-import Story from '@/components/cinematic/Story'
-import Gallery from '@/components/cinematic/Gallery'
-import VideoMaskText from '@/components/cinematic/VideoMaskText'
-import ParallaxSection from '@/components/cinematic/ParallaxSection'
-import PopUpBook from '@/components/cinematic/PopUpBook'
-import Rsvp from '@/components/cinematic/Rsvp'
-import Footer from '@/components/cinematic/Footer'
-import Cursor from '@/components/cinematic/Cursor'
-import Loader from '@/components/cinematic/Loader'
-import AudioPlayer from '@/components/cinematic/AudioPlayer'
+export const metadata: Metadata = {
+  title: "Sagar & Vandana | Cinematic Wedding Invitation",
+  description:
+    "A cinematic wedding invitation for Sagar and Vandana, with the story, celebrations, RSVP, and calendar details.",
+  openGraph: {
+    title: "Sagar & Vandana | Cinematic Wedding Invitation",
+    description:
+      "Step into the wedding story of Sagar and Vandana and join the December 2026 celebrations.",
+    type: "website",
+  },
+};
 
 export default function CinematicPage() {
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  useEffect(() => {
-    document.body.style.backgroundColor = '#050505'
-    document.documentElement.style.backgroundColor = '#050505'
-    return () => {
-      document.body.style.backgroundColor = ''
-      document.documentElement.style.backgroundColor = ''
-    }
-  }, [])
-
-  return (
-    <LenisProvider>
-      <main className="bg-[#050505] text-[#f5f5f5] min-h-[100dvh] font-sans selection:bg-white selection:text-black">
-        <style dangerouslySetInnerHTML={{__html: `
-          @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@200;300;400&display=swap');
-          
-          .font-serif { font-family: 'Cormorant Garamond', serif; }
-          .font-sans { font-family: 'Inter', sans-serif; }
-          
-          html, body {
-            background-color: #050505;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-text-size-adjust: 100%;
-          }
-          
-          /* Hide cursor only on desktop */
-          @media (hover: hover) and (pointer: fine) {
-            html, body, a, button, input { cursor: none; }
-          }
-        `}} />
-
-        {!isLoaded && <Loader onComplete={() => setIsLoaded(true)} />}
-
-        <div className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-          <Cursor />
-          <AudioPlayer />
-          <Hero />
-          <ParallaxSection />
-          <KineticTypography />
-          <Countdown />
-          <Story />
-          <Gallery />
-          <VideoMaskText />
-          <PopUpBook />
-          <Footer />
-        </div>
-
-      </main>
-    </LenisProvider>
-  )
+  return <CinematicExperience />;
 }

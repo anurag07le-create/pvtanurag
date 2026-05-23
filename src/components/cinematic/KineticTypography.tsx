@@ -7,7 +7,7 @@ const lines = [
   { text: "families", style: "normal" },
   { text: "one", style: "italic" },
   { text: "destiny", style: "normal" },
-  { text: "—", style: "normal" },
+  { text: "for", style: "normal" },
   { text: "Sagar", style: "italic" },
   { text: "&", style: "normal" },
   { text: "Vandana", style: "italic" },
@@ -29,25 +29,25 @@ function KineticWord({ word, index, totalWords, containerRef }: {
   const wordPeak = (index + 0.5) / totalWords
   const wordEnd = (index + 1) / totalWords
 
-  // Scale: small → big → slightly smaller
+  // Scale: small to big to slightly smaller.
   const scale = useTransform(scrollYProgress, 
     [wordStart, wordPeak, wordEnd], 
     [0.3, 1, 0.8]
   )
 
-  // Opacity: fade in → full → fade out
+  // Opacity: fade in to full to fade out.
   const opacity = useTransform(scrollYProgress,
     [wordStart, wordStart + 0.02, wordPeak, wordEnd - 0.02, wordEnd],
     [0, 1, 1, 0.3, 0]
   )
 
-  // Y position: rise up → center → drift up and away
+  // Y position: rise up to center, then drift away.
   const y = useTransform(scrollYProgress,
     [wordStart, wordPeak, wordEnd],
     [60, 0, -40]
   )
 
-  // Rotation: slight tilt → straight → tilt other way
+  // Rotation: slight tilt, straight, then tilt the other way.
   const rotate = useTransform(scrollYProgress,
     [wordStart, wordPeak, wordEnd],
     [index % 2 === 0 ? -8 : 8, 0, index % 2 === 0 ? 4 : -4]
@@ -87,7 +87,7 @@ export default function KineticTypography() {
     offset: ["start start", "end end"]
   })
 
-  // Background color shifts from pure black → deep warm → back to black
+  // Background color shifts from pure black to warm glow and back.
   const bgOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.15, 0])
 
   return (

@@ -1,6 +1,6 @@
 "use client"
-import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState } from 'react'
+import { motion, type PanInfo } from 'framer-motion'
 
 const events = [
   {
@@ -8,7 +8,7 @@ const events = [
     title: "Mehandi",
     date: "5 Dec 2026",
     time: "10:00 AM",
-    venue: "The Royal Gardens",
+    venue: "Hotel Natraj & Resort",
     color: "#1B4332", // Deep Green
     accent: "#D8F3DC",
     image: "/images/mehandi-caricature.png",
@@ -19,7 +19,7 @@ const events = [
     title: "Behrana",
     date: "5 Dec 2026",
     time: "8:00 PM",
-    venue: "Grand Temple Hall",
+    venue: "Hotel Natraj & Resort",
     color: "#4A0404", // Maroon
     accent: "#FFD6A5",
     image: "/images/behrana-caricature.png",
@@ -30,7 +30,7 @@ const events = [
     title: "Haldi",
     date: "6 Dec 2026",
     time: "10:00 AM",
-    venue: "The Sunny Courtyard",
+    venue: "Hotel Natraj & Resort",
     color: "#E29578", // Warm Terracotta/Yellow
     accent: "#FFDDD2",
     image: "/images/haldi-caricature.png",
@@ -41,7 +41,7 @@ const events = [
     title: "Wedding",
     date: "6 Dec 2026",
     time: "4:00 PM",
-    venue: "The Grand Palace",
+    venue: "Hotel Natraj & Resort",
     color: "#60100B", // Royal Red
     accent: "#EAE2B7",
     image: "/images/wedding-caricature.png",
@@ -52,7 +52,7 @@ const events = [
     title: "Reception",
     date: "6 Dec 2026",
     time: "8:00 PM",
-    venue: "The Crystal Ballroom",
+    venue: "Hotel Natraj & Resort",
     color: "#0D1B2A", // Midnight Blue
     accent: "#E0E1DD",
     image: "/images/reception-caricature.png",
@@ -65,7 +65,7 @@ export default function PopUpBook() {
   const [isFlipping, setIsFlipping] = useState(false)
 
   // Handle Swipe
-  const handleDragEnd = (e: any, { offset, velocity }: any) => {
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, { offset }: PanInfo) => {
     const swipe = offset.x
     if (swipe < -50 && currentPage < events.length - 1) {
       nextPage()
@@ -148,7 +148,14 @@ export default function PopUpBook() {
                 <div className="w-full h-full p-6 md:p-8 flex flex-col relative overflow-hidden">
                   
                   {/* Subtle texture/pattern overlay */}
-                  <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]" />
+                  <div
+                    className="absolute inset-0 opacity-10"
+                    style={{
+                      backgroundImage:
+                        "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.25) 0 1px, transparent 1px), radial-gradient(circle at 70% 40%, rgba(255,255,255,0.18) 0 1px, transparent 1px)",
+                      backgroundSize: "28px 28px, 42px 42px",
+                    }}
+                  />
 
                   {/* Top Details (Takes up natural space) */}
                   <div className="relative z-10 flex-shrink-0 mb-4">

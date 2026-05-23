@@ -2,6 +2,14 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
+type DeviceOrientationEventWithPermission = typeof DeviceOrientationEvent & {
+  requestPermission?: () => Promise<PermissionState>
+}
+
+function isTouchDevice() {
+  return typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+}
+
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
@@ -11,25 +19,22 @@ export default function Hero() {
   const opacity = useTransform(scrollY, [0, 500], [1, 0])
 
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
-  const [isMobile, setIsMobile] = useState(false)
   const [gyroPermission, setGyroPermission] = useState(false)
 
   useEffect(() => {
-    const mobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0
-    setIsMobile(mobile)
-
-    if (mobile) {
+    if (isTouchDevice()) {
       // Request gyroscope permission on iOS 13+
       const requestPermission = async () => {
-        if (typeof (DeviceOrientationEvent as any).requestPermission === 'function') {
+        const DeviceOrientation = DeviceOrientationEvent as DeviceOrientationEventWithPermission
+        if (typeof DeviceOrientation.requestPermission === 'function') {
           try {
-            const response = await (DeviceOrientationEvent as any).requestPermission()
+            const response = await DeviceOrientation.requestPermission()
             if (response === 'granted') setGyroPermission(true)
           } catch {
             // Permission denied, that's ok
           }
         } else {
-          // Android or older iOS — permission not needed
+          // Android or older iOS: permission is not needed.
           setGyroPermission(true)
         }
       }
@@ -41,7 +46,7 @@ export default function Hero() {
 
   // Gyroscope handler for mobile
   useEffect(() => {
-    if (!isMobile || !gyroPermission) return
+    if (!isTouchDevice() || !gyroPermission) return
 
     const handleOrientation = (e: DeviceOrientationEvent) => {
       const gamma = e.gamma || 0 // left-right tilt (-90 to 90)
@@ -55,11 +60,11 @@ export default function Hero() {
 
     window.addEventListener('deviceorientation', handleOrientation)
     return () => window.removeEventListener('deviceorientation', handleOrientation)
-  }, [isMobile, gyroPermission])
+  }, [gyroPermission])
 
   // Mouse handler for desktop
   useEffect(() => {
-    if (isMobile) return
+    if (isTouchDevice()) return
 
     const handleMouseMove = (e: MouseEvent) => {
       setTilt({
@@ -69,14 +74,15 @@ export default function Hero() {
     }
     window.addEventListener('mousemove', handleMouseMove)
     return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [isMobile])
+  }, [])
 
   // Request gyro permission on first tap (iOS requirement)
   const handleTap = async () => {
-    if (isMobile && !gyroPermission) {
-      if (typeof (DeviceOrientationEvent as any).requestPermission === 'function') {
+    if (isTouchDevice() && !gyroPermission) {
+      const DeviceOrientation = DeviceOrientationEvent as DeviceOrientationEventWithPermission
+      if (typeof DeviceOrientation.requestPermission === 'function') {
         try {
-          const response = await (DeviceOrientationEvent as any).requestPermission()
+          const response = await DeviceOrientation.requestPermission()
           if (response === 'granted') setGyroPermission(true)
         } catch {
           // silent fail

@@ -29,7 +29,7 @@ export default function VideoMaskText() {
             className="font-serif font-black text-[25vw] leading-none tracking-tighter uppercase"
             style={{
               // This is the magic CSS that clips the background video/image to the text
-              backgroundImage: 'url("https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=3000&auto=format&fit=crop")',
+              backgroundImage: 'url("/images/photo4.jpeg")',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundAttachment: 'fixed',
@@ -38,7 +38,7 @@ export default function VideoMaskText() {
               color: 'transparent',
             }}
           >
-            SAGAR & VANDANA — FOREVER — SAGAR & VANDANA
+            SAGAR & VANDANA - FOREVER - SAGAR & VANDANA
           </h1>
         </motion.div>
 

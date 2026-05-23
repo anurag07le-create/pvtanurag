@@ -102,7 +102,7 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
                 </h3>
                 <div className="w-8 h-[1px] bg-white/20 mt-3 mb-2" />
                 <span className="font-mono text-[8px] text-white/30 tracking-widest">
-                  06 • 12 • 2026
+                  06 | 12 | 2026
                 </span>
               </motion.div>
             </div>

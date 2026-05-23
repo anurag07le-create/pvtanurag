@@ -19,6 +19,8 @@ function getTimeLeft() {
   }
 }
 
+type TimeLeft = ReturnType<typeof getTimeLeft>
+
 // Deterministic particle positions to avoid hydration mismatch
 const particles = Array.from({ length: 25 }).map((_, i) => ({
   left: `${(i * 17.3 + 7) % 100}%`,
@@ -28,22 +30,25 @@ const particles = Array.from({ length: 25 }).map((_, i) => ({
 }))
 
 export default function Countdown() {
-  const [time, setTime] = useState(getTimeLeft())
-  const [mounted, setMounted] = useState(false)
+  const [time, setTime] = useState<TimeLeft | null>(null)
 
   useEffect(() => {
-    setMounted(true)
+    const tick = () => setTime(getTimeLeft())
+    const firstTick = window.setTimeout(tick, 0)
     const interval = setInterval(() => {
-      setTime(getTimeLeft())
+      tick()
     }, 1000)
-    return () => clearInterval(interval)
+    return () => {
+      window.clearTimeout(firstTick)
+      clearInterval(interval)
+    }
   }, [])
 
   const blocks = [
-    { label: 'Days', value: time.days },
-    { label: 'Hours', value: time.hours },
-    { label: 'Minutes', value: time.minutes },
-    { label: 'Seconds', value: time.seconds },
+    { label: 'Days', value: time?.days },
+    { label: 'Hours', value: time?.hours },
+    { label: 'Minutes', value: time?.minutes },
+    { label: 'Seconds', value: time?.seconds },
   ]
 
   return (
@@ -93,7 +98,7 @@ export default function Countdown() {
         </h2>
       </motion.div>
 
-      {time.isOver ? (
+      {time?.isOver ? (
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -114,19 +119,19 @@ export default function Countdown() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="flex gap-3 md:gap-8 relative z-10"
         >
-          {blocks.map((block, i) => (
+          {blocks.map((block) => (
             <div key={block.label} className="flex flex-col items-center">
               <div className="relative w-[72px] h-[90px] md:w-[140px] md:h-[160px] border border-white/10 bg-white/[0.03] backdrop-blur-sm rounded-lg flex items-center justify-center overflow-hidden">
                 {/* Subtle shimmer */}
                 <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
                 
                 <motion.span
-                  key={mounted ? block.value : 'ssr'}
+                  key={time ? block.value : 'ssr'}
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   className="font-serif text-3xl md:text-6xl text-white font-light tabular-nums"
                 >
-                  {mounted ? String(block.value).padStart(2, '0') : '--'}
+                  {typeof block.value === 'number' ? String(block.value).padStart(2, '0') : '--'}
                 </motion.span>
               </div>
               <span className="font-sans text-white/30 text-[9px] md:text-xs tracking-[0.3em] uppercase mt-3 md:mt-4">
@@ -146,7 +151,7 @@ export default function Countdown() {
         className="mt-12 md:mt-20 text-center relative z-10"
       >
         <p className="font-mono text-[10px] md:text-xs text-white/20 tracking-[0.2em]">
-          6th December 2026 • 4:00 PM
+          6th December 2026 | 4:00 PM
         </p>
       </motion.div>
     </section>

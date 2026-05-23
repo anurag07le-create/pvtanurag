@@ -13,21 +13,21 @@ const timelineEvents = [
   {
     id: 2,
     title: "They Said Yes",
-    text: "15th April — the day both hearts agreed. A simple yes that changed everything forever.",
+    text: "15th April: the day both hearts agreed. A simple yes that changed everything forever.",
     image: "/images/photo2.jpeg",
     year: "15 APR"
   },
   {
     id: 3,
     title: "The Date Was Fixed",
-    text: "10th May — it became official. The stars aligned, and the countdown to forever began.",
+    text: "10th May: it became official. The stars aligned, and the countdown to forever began.",
     image: "/images/photo4.jpeg",
     year: "10 MAY"
   },
   {
     id: 4,
     title: "The Celebration Awaits",
-    text: "6th December — two families become one. You are invited to witness this beautiful beginning.",
+    text: "6th December: two families become one. You are invited to witness this beautiful beginning.",
     image: "/images/photo5.jpeg",
     year: "6 DEC"
   }
@@ -128,7 +128,7 @@ export default function Story() {
         </motion.p>
       </div>
 
-      {/* Story Cards — Vertical Scroll */}
+      {/* Story cards: vertical scroll */}
       {timelineEvents.map((event, i) => (
         <StoryCard key={event.id} event={event} index={i} />
       ))}
