@@ -140,8 +140,8 @@ export default function Hero() {
         >
           <motion.img 
             src="/images/photo3-nobg.png"
-            alt="Vandana and Sagar"
-            className="w-full h-full object-contain object-bottom drop-shadow-[0_-20px_50px_rgba(0,0,0,0.8)]"
+            alt="Sagar and Vandana"
+            className="w-full h-full object-contain object-bottom drop-shadow-[0_-20px_50px_rgba(0,0,0,0.8)] scale-110 md:scale-[1.3] origin-bottom"
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 2, ease: "easeOut" }}
