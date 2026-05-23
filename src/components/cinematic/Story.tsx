@@ -124,11 +124,39 @@ function StoryCard({ event, index }: { event: typeof timelineEvents[0]; index: n
 }
 
 export default function Story() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  })
+  
+  // Parallax the sanskrit text slower than the scroll
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"])
+
   return (
-    <section className="relative bg-[#050505] z-20">
+    <section ref={containerRef} className="relative bg-[#050505] z-20 overflow-hidden">
       
+      {/* Sanskrit Whispers Background */}
+      <motion.div 
+        className="absolute inset-0 flex flex-col items-center justify-center opacity-[0.03] pointer-events-none select-none z-0"
+        style={{ y: backgroundY }}
+      >
+        <h1 className="font-serif text-[15vw] md:text-[10vw] leading-[0.8] whitespace-nowrap text-[#DAA520]">
+          मंगलम् भगवान विष्णुः
+        </h1>
+        <h1 className="font-serif text-[15vw] md:text-[10vw] leading-[0.8] whitespace-nowrap ml-[20vw] text-[#DAA520]">
+          मंगलम् गरुड़ध्वजः
+        </h1>
+        <h1 className="font-serif text-[15vw] md:text-[10vw] leading-[0.8] whitespace-nowrap mr-[20vw] text-[#DAA520]">
+          मंगलम् पुण्डरीकाक्षः
+        </h1>
+        <h1 className="font-serif text-[15vw] md:text-[10vw] leading-[0.8] whitespace-nowrap text-[#DAA520]">
+          मंगलाय तनो हरिः
+        </h1>
+      </motion.div>
+
       {/* Section Header */}
-      <div className="flex flex-col items-center justify-center py-20 md:py-32 px-4">
+      <div className="relative z-10 flex flex-col items-center justify-center py-20 md:py-32 px-4">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

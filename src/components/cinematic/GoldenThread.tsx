@@ -40,26 +40,21 @@ export default function GoldenThread() {
         }}
       />
       
-      {/* The Glowing Tip */}
+      {/* The Lotus Tip */}
       <motion.div
-        className="absolute w-4 h-4 md:w-6 md:h-6 rounded-full -translate-x-1/2 -translate-y-1/2 left-[0.5px] md:left-[1px]"
-        style={{
-          top: tipTop,
-          background: 'radial-gradient(circle, #FFDF00 0%, transparent 70%)',
-          filter: 'drop-shadow(0 0 10px #DAA520)',
-          opacity: smoothProgress // Fade in as you start scrolling
-        }}
-      />
-      
-      {/* Deep Flare on the Tip */}
-      <motion.div
-        className="absolute w-12 h-[2px] md:w-20 rounded-full bg-[#FFDF00] -translate-x-1/2 -translate-y-1/2 left-[0.5px] md:left-[1px] blur-[2px]"
+        className="absolute w-6 h-6 md:w-8 md:h-8 -translate-x-1/2 -translate-y-1/2 left-[0.5px] md:left-[1px] flex items-center justify-center text-[#FFDF00]"
         style={{
           top: tipTop,
           opacity: smoothProgress,
-          mixBlendMode: "screen"
+          filter: 'drop-shadow(0 0 10px rgba(218,165,32,0.8))'
         }}
-      />
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full drop-shadow-[0_0_5px_rgba(255,223,0,0.8)]">
+          <path d="M12 2.5s-2.5 5-5.5 7.5c-2.3 2-4.5 2-4.5 2s2 2.5 5 2.5c2 0 4-1 5-3 1 2 3 3 5 3 3 0 5-2.5 5-2.5s-2.2 0-4.5-2c-3-2.5-5.5-7.5-5.5-7.5z"/>
+          <path d="M12 21s-3-2-5-5c-1.5-2.5-1-4-1-4s2 1 3.5 3c2 2.5 2.5 6 2.5 6z"/>
+          <path d="M12 21s3-2 5-5c1.5-2.5 1-4 1-4s-2 1-3.5 3c-2 2.5-2.5 6-2.5 6z"/>
+        </svg>
+      </motion.div>
     </div>
   )
 }
