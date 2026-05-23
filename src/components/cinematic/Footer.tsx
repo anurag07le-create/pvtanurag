@@ -6,31 +6,31 @@ import { motion } from 'framer-motion'
 function generateICS() {
   const events = [
     {
-      title: 'Mehandi - Vandana & Sagar',
+      title: 'Mehandi - Sagar & Vandana',
       start: '20261205T043000Z', // 10:00 AM IST = 4:30 AM UTC
       end: '20261205T103000Z',
       description: 'Kickstarting the festivities with colors, music, and joy.',
     },
     {
-      title: 'Behrana - Vandana & Sagar',
+      title: 'Behrana - Sagar & Vandana',
       start: '20261205T143000Z', // 8:00 PM IST = 2:30 PM UTC
       end: '20261205T173000Z',
       description: 'A divine evening of prayers and traditional blessings.',
     },
     {
-      title: 'Haldi - Vandana & Sagar',
+      title: 'Haldi - Sagar & Vandana',
       start: '20261206T043000Z', // 10:00 AM IST
       end: '20261206T083000Z',
       description: 'The vibrant morning ritual of purification and love.',
     },
     {
-      title: 'Wedding - Vandana & Sagar',
+      title: 'Wedding - Sagar & Vandana',
       start: '20261206T103000Z', // 4:00 PM IST
       end: '20261206T133000Z',
       description: 'The grand ceremony where two souls become one.',
     },
     {
-      title: 'Reception - Vandana & Sagar',
+      title: 'Reception - Sagar & Vandana',
       start: '20261206T143000Z', // 8:00 PM IST
       end: '20261206T183000Z',
       description: 'A night of celebration, dining, and dancing.',
@@ -48,7 +48,7 @@ END:VEVENT`).join('\n')
 
   return `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Vandana & Sagar Wedding//EN
+PRODID:-//Sagar & Vandana Wedding//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 ${vevents}
@@ -61,7 +61,7 @@ function handleDownloadCalendar() {
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
   link.href = url
-  link.download = 'vandana-sagar-wedding.ics'
+  link.download = 'sagar-vandana-wedding.ics'
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)
@@ -70,7 +70,7 @@ function handleDownloadCalendar() {
 
 function handleWhatsAppShare() {
   const message = encodeURIComponent(
-    `You're invited to Vandana & Sagar's wedding!\n\n5th-6th December 2026\nLocation: https://maps.app.goo.gl/bhebNmonJSe1KHay5\n\nView the invitation: ${typeof window !== 'undefined' ? window.location.href : ''}\n\nWe can't wait to celebrate with you.`
+    `You're invited to Sagar & Vandana's wedding!\n\n5th-6th December 2026\nLocation: https://maps.app.goo.gl/bhebNmonJSe1KHay5\n\nView the invitation: ${typeof window !== 'undefined' ? window.location.href : ''}\n\nWe can't wait to celebrate with you.`
   )
   window.open(`https://wa.me/?text=${message}`, '_blank')
 }
@@ -91,7 +91,7 @@ export default function Footer() {
             With Love,
           </h3>
           <p className="font-serif text-2xl md:text-4xl text-[#1B4332]/60 font-light italic mb-2">
-            Vandana & Sagar
+            Sagar & Vandana
           </p>
           <div className="w-12 h-[1px] bg-[#1B4332]/20 mx-auto mt-4 mb-8" />
           <p className="font-sans text-[#1B4332]/30 text-[10px] md:text-xs tracking-[0.3em] uppercase">
