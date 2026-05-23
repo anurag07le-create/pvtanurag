@@ -37,12 +37,7 @@ function PhotoCard({ src, index }: { src: string; index: number }) {
         }
       }}
     >
-      <motion.div
-        className="relative w-full overflow-hidden"
-        style={{
-          filter: blur.get ? undefined : undefined, // driven by style below
-        }}
-      >
+      <motion.div className="relative w-full overflow-hidden">
         <motion.img 
           src={src} 
           alt={`Memory ${index + 1}`}
