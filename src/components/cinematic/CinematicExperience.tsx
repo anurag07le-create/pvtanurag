@@ -62,7 +62,7 @@ export default function CinematicExperience() {
         >
           <GoldenThread />
           <Cursor />
-          <AudioPlayer />
+          <AudioPlayer autoStart={isLoaded} />
           <Hero />
           <InvitationMessage />
           <KineticTypography />

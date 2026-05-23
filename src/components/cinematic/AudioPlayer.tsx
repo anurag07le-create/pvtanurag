@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-export default function AudioPlayer() {
+export default function AudioPlayer({ autoStart = false }: { autoStart?: boolean }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
 
@@ -11,6 +11,17 @@ export default function AudioPlayer() {
       audioRef.current.volume = 0.3
     }
   }, [])
+
+  // Auto-play when autoStart turns true (triggered by Gatekeeper unlock)
+  useEffect(() => {
+    if (autoStart && audioRef.current && !isPlaying) {
+      audioRef.current.play().then(() => {
+        setIsPlaying(true)
+      }).catch((e) => {
+        console.warn("Auto-play blocked by browser:", e)
+      })
+    }
+  }, [autoStart])
 
   const togglePlay = () => {
     if (audioRef.current) {
