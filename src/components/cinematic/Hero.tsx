@@ -110,16 +110,16 @@ export default function Hero() {
         
         {/* BACKGROUND LAYER (GIANT TYPOGRAPHY) */}
         <motion.div 
-          className="absolute z-10 w-full text-center flex flex-col items-center justify-center"
+          className="absolute top-[8%] md:top-[12%] z-10 w-full text-center flex flex-col items-center justify-center"
           style={{ 
             y: textY,
             x: -tilt.x * 0.5,
           }}
         >
-          <h1 className="font-serif text-[22vw] md:text-[15vw] leading-[0.8] text-white/10 font-bold tracking-tighter whitespace-nowrap select-none">
+          <h1 className="font-serif text-[24vw] md:text-[16vw] leading-[0.8] text-white/10 font-bold tracking-tighter whitespace-nowrap select-none">
             FOREVER
           </h1>
-          <h1 className="font-serif text-[22vw] md:text-[15vw] leading-[0.8] text-white/10 font-bold tracking-tighter whitespace-nowrap select-none italic">
+          <h1 className="font-serif text-[24vw] md:text-[16vw] leading-[0.8] text-white/10 font-bold tracking-tighter whitespace-nowrap select-none italic">
             ALWAYS
           </h1>
         </motion.div>
@@ -143,7 +143,7 @@ export default function Hero() {
         </motion.div>
 
         {/* MIDDLE TEXT LAYER */}
-        <div className="relative z-30 text-center px-4 mt-[25vh] md:mt-[30vh] pointer-events-none">
+        <div className="relative z-30 text-center px-4 mt-[15vh] md:mt-[20vh] pointer-events-none">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
