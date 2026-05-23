@@ -132,7 +132,7 @@ export default function Hero() {
 
         {/* FOREGROUND LAYER (BACKGROUND REMOVED COUPLE) */}
         <motion.div 
-          className="absolute bottom-0 w-full max-w-none md:max-w-4xl h-[95vh] md:h-[80vh] z-20 flex justify-center pointer-events-none"
+          className="absolute bottom-0 w-full max-w-none md:max-w-[1200px] h-[105vh] md:h-[95vh] z-20 flex justify-center pointer-events-none"
           style={{ 
             y: coupleY,
             x: tilt.x,

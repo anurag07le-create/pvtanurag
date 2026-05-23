@@ -10,8 +10,6 @@ import Gallery from "@/components/cinematic/Gallery";
 import VideoMaskText from "@/components/cinematic/VideoMaskText";
 import ParallaxSection from "@/components/cinematic/ParallaxSection";
 import PopUpBook from "@/components/cinematic/PopUpBook";
-import Itinerary from "@/components/cinematic/Itinerary";
-import Rsvp from "@/components/cinematic/Rsvp";
 import Footer from "@/components/cinematic/Footer";
 import Cursor from "@/components/cinematic/Cursor";
 import Loader from "@/components/cinematic/Loader";
@@ -63,15 +61,12 @@ export default function CinematicExperience() {
           <Cursor />
           <AudioPlayer />
           <Hero />
-          <ParallaxSection />
           <KineticTypography />
           <Countdown />
           <Story />
           <Gallery />
           <VideoMaskText />
           <PopUpBook />
-          <Itinerary />
-          <Rsvp />
           <Footer />
         </div>
       </main>
