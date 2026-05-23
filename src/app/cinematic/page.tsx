@@ -3,10 +3,13 @@
 import React, { useEffect, useState } from 'react'
 import LenisProvider from '@/components/cinematic/LenisProvider'
 import Hero from '@/components/cinematic/Hero'
+import Countdown from '@/components/cinematic/Countdown'
 import Story from '@/components/cinematic/Story'
 import Gallery from '@/components/cinematic/Gallery'
-import Itinerary from '@/components/cinematic/Itinerary'
+import PopUpBook from '@/components/cinematic/PopUpBook'
+import SaptapadiSection from '@/components/cinematic/SaptapadiSection'
 import Rsvp from '@/components/cinematic/Rsvp'
+import Footer from '@/components/cinematic/Footer'
 import Cursor from '@/components/cinematic/Cursor'
 import Loader from '@/components/cinematic/Loader'
 import AudioPlayer from '@/components/cinematic/AudioPlayer'
@@ -14,7 +17,6 @@ import AudioPlayer from '@/components/cinematic/AudioPlayer'
 export default function CinematicPage() {
   const [isLoaded, setIsLoaded] = useState(false)
 
-  // Ensure the body has the dark background for this route specifically
   useEffect(() => {
     document.body.style.backgroundColor = '#050505'
     document.documentElement.style.backgroundColor = '#050505'
@@ -26,8 +28,7 @@ export default function CinematicPage() {
 
   return (
     <LenisProvider>
-      <main className="bg-[#050505] text-[#f5f5f5] min-h-screen font-sans selection:bg-white selection:text-black">
-        {/* Load elegant fonts */}
+      <main className="bg-[#050505] text-[#f5f5f5] min-h-[100dvh] font-sans selection:bg-white selection:text-black">
         <style dangerouslySetInnerHTML={{__html: `
           @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@200;300;400&display=swap');
           
@@ -36,10 +37,14 @@ export default function CinematicPage() {
           
           html, body {
             background-color: #050505;
-            cursor: none;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-text-size-adjust: 100%;
           }
-          /* Ensure clickable elements also hide default cursor */
-          a, button, input { cursor: none; }
+          
+          /* Hide cursor only on desktop */
+          @media (hover: hover) and (pointer: fine) {
+            html, body, a, button, input { cursor: none; }
+          }
         `}} />
 
         {!isLoaded && <Loader onComplete={() => setIsLoaded(true)} />}
@@ -48,10 +53,13 @@ export default function CinematicPage() {
           <Cursor />
           <AudioPlayer />
           <Hero />
+          <Countdown />
           <Story />
           <Gallery />
-          <Itinerary />
+          <PopUpBook />
+          <SaptapadiSection />
           <Rsvp />
+          <Footer />
         </div>
 
       </main>

@@ -1,8 +1,7 @@
 "use client"
 import React, { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
-// Replicating the 5 images to make 20 as requested
 const originalImages = [
   '/images/photo1.jpeg',
   '/images/photo2.jpeg',
@@ -11,81 +10,88 @@ const originalImages = [
   '/images/photo5.jpeg'
 ]
 const galleryImages = Array.from({ length: 20 }).map((_, i) => originalImages[i % originalImages.length])
-const chaosFrames = galleryImages.map((_, index) => {
-  const seed = Math.sin(index + 1) * 10000
-  const fraction = seed - Math.floor(seed)
-  const next = (offset: number) => {
-    const value = Math.sin(index * 12.9898 + offset) * 43758.5453
-    return value - Math.floor(value)
-  }
 
-  return {
-    x: fraction * 1000 - 500,
-    y: next(78.233) * 1000 - 500,
-    rotate: next(23.17) * 90 - 45,
-    scale: next(91.7) * 1.5 + 0.5,
-  }
-})
+function PhotoCard({ src, index }: { src: string; index: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "center center"]
+  })
 
-export default function Gallery() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: "0px" })
+  // Film developing effect: blur → sharp, dark → bright
+  const blur = useTransform(scrollYProgress, [0, 0.6, 1], [12, 4, 0])
+  const brightness = useTransform(scrollYProgress, [0, 0.6, 1], [0.2, 0.6, 1])
+  const grayscale = useTransform(scrollYProgress, [0, 0.8, 1], [1, 0.5, 0])
+  const scale = useTransform(scrollYProgress, [0, 1], [0.92, 1])
+  const imgOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1])
 
   return (
-    <section className="relative w-full min-h-screen bg-[#050505] py-32 px-4 md:px-12 z-20 overflow-hidden">
+    <motion.div
+      ref={ref}
+      className="relative w-full break-inside-avoid rounded-sm overflow-hidden mb-3 md:mb-4"
+      style={{ scale, opacity: imgOpacity }}
+      onViewportEnter={() => {
+        // Haptic feedback when photo reveals
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+          navigator.vibrate(10)
+        }
+      }}
+    >
+      <motion.div
+        className="relative w-full overflow-hidden"
+        style={{
+          filter: blur.get ? undefined : undefined, // driven by style below
+        }}
+      >
+        <motion.img 
+          src={src} 
+          alt={`Memory ${index + 1}`}
+          className="w-full h-auto object-cover"
+          style={{
+            filter: `blur(${blur}px) brightness(${brightness}) grayscale(${grayscale})` as any,
+          }}
+          // Framer motion doesn't interpolate filter strings well, so we use individual transforms
+        />
+      </motion.div>
       
-      <div className="text-center mb-24">
-        <h2 className="font-serif text-5xl md:text-7xl text-white font-light mb-4">
+      {/* Subtle overlay that fades out */}
+      <motion.div 
+        className="absolute inset-0 bg-[#050505] pointer-events-none"
+        style={{ opacity: useTransform(scrollYProgress, [0, 0.5], [0.6, 0]) }}
+      />
+    </motion.div>
+  )
+}
+
+export default function Gallery() {
+  return (
+    <section className="relative w-full min-h-[100dvh] bg-[#050505] py-20 md:py-32 px-4 md:px-12 z-20 overflow-hidden">
+      
+      <div className="text-center mb-16 md:mb-24">
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="font-serif text-4xl md:text-7xl text-white font-light mb-3 md:mb-4"
+        >
           The Archive
-        </h2>
-        <p className="font-sans text-gray-500 font-light tracking-[0.3em] text-xs uppercase">
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="font-sans text-gray-500 font-light tracking-[0.3em] text-[10px] md:text-xs uppercase"
+        >
           Moments frozen in time
-        </p>
+        </motion.p>
       </div>
 
-      <div 
-        ref={containerRef}
-        className="max-w-7xl mx-auto columns-2 md:columns-4 lg:columns-5 gap-4 space-y-4 pb-32"
-      >
-        {galleryImages.map((src, index) => {
-          const frame = chaosFrames[index]
-
-          return (
-            <motion.div
-              key={index}
-              className="relative w-full break-inside-avoid rounded-sm overflow-hidden group cursor-none"
-              data-cursor="hover"
-              initial={{
-                x: frame.x,
-                y: frame.y,
-                rotate: frame.rotate,
-                scale: frame.scale,
-                opacity: 0
-              }}
-              animate={isInView ? {
-                x: 0,
-                y: 0,
-                rotate: 0,
-                scale: 1,
-                opacity: 1
-              } : {}}
-              transition={{
-                type: "spring",
-                damping: 20,
-                stiffness: 100,
-                mass: 1,
-                delay: isInView ? index * 0.05 : 0
-              }}
-            >
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none" />
-              <img 
-                src={src} 
-                alt="Gallery item"
-                className="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-110"
-              />
-            </motion.div>
-          )
-        })}
+      <div className="max-w-6xl mx-auto columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-4 pb-16 md:pb-32">
+        {galleryImages.map((src, index) => (
+          <PhotoCard key={index} src={src} index={index} />
+        ))}
       </div>
     </section>
   )

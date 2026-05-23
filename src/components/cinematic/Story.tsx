@@ -5,94 +5,133 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 const timelineEvents = [
   {
     id: 1,
-    title: "The Quiet Beginning",
-    text: "Before the noise, there was simply a quiet understanding. Two paths converging without force.",
+    title: "The Families Met",
+    text: "Two families, one beautiful connection. When it's meant to be, everything falls into place.",
     image: "/images/photo1.jpeg",
-    year: "2024"
+    year: "2026"
   },
   {
     id: 2,
-    title: "The Alignment",
-    text: "To listen without ego and speak without fear. Finding joy in the ordinary.",
+    title: "They Said Yes",
+    text: "15th April — the day both hearts agreed. A simple yes that changed everything forever.",
     image: "/images/photo2.jpeg",
-    year: "2025"
+    year: "15 APR"
   },
   {
     id: 3,
-    title: "Seven Promises",
-    text: "To walk beside each other, never ahead, never behind. Choosing each other, again and again.",
+    title: "The Date Was Fixed",
+    text: "10th May — it became official. The stars aligned, and the countdown to forever began.",
     image: "/images/photo4.jpeg",
-    year: "VOWS"
+    year: "10 MAY"
   },
   {
     id: 4,
-    title: "The Celebration",
-    text: "A new chapter is written. We invite you to witness our forever.",
+    title: "The Celebration Awaits",
+    text: "6th December — two families become one. You are invited to witness this beautiful beginning.",
     image: "/images/photo5.jpeg",
-    year: "2026"
+    year: "6 DEC"
   }
 ]
 
-export default function Story() {
-  const containerRef = useRef<HTMLDivElement>(null)
+function StoryCard({ event, index }: { event: typeof timelineEvents[0]; index: number }) {
+  const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: ref,
+    offset: ["start end", "end start"]
   })
 
-  // Move the timeline horizontally by translating X from 0% to -75% (for 4 items)
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"])
+  // Image clips open diagonally as you scroll in
+  const clipPath = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.5],
+    [
+      "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
+      "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
+    ]
+  )
+
+  const imageScale = useTransform(scrollYProgress, [0, 0.5], [1.3, 1])
+  const textOpacity = useTransform(scrollYProgress, [0.15, 0.35], [0, 1])
+  const textY = useTransform(scrollYProgress, [0.15, 0.35], [40, 0])
 
   return (
-    <section ref={containerRef} className="relative h-[400vh] bg-[#050505] z-20">
+    <div ref={ref} className="min-h-[100dvh] flex flex-col items-center justify-center px-4 md:px-12 py-16 md:py-0 relative">
       
-      {/* Sticky container that locks while scrolling vertically */}
-      <div className="sticky top-0 flex h-[100dvh] items-center overflow-hidden">
+      {/* Phase label */}
+      <motion.span 
+        style={{ opacity: textOpacity }}
+        className="font-sans text-amber-500/50 tracking-[0.4em] uppercase text-[10px] md:text-xs font-bold mb-6 md:mb-8"
+      >
+        Phase 0{index + 1}
+      </motion.span>
+
+      {/* Image with clip-path reveal */}
+      <motion.div 
+        className="w-full max-w-sm md:max-w-lg aspect-[4/5] md:aspect-[3/4] relative overflow-hidden bg-black rounded-sm mb-8 md:mb-12"
+        style={{ clipPath }}
+      >
+        <motion.img 
+          src={event.image} 
+          alt={event.title}
+          className="w-full h-full object-cover"
+          style={{ scale: imageScale }}
+        />
+        {/* Overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
+      </motion.div>
+
+      {/* Text content */}
+      <motion.div 
+        className="text-center max-w-md px-2"
+        style={{ opacity: textOpacity, y: textY }}
+      >
+        <h3 className="font-serif text-4xl md:text-6xl text-white font-light italic mb-4 md:mb-6 leading-none">
+          {event.title}
+        </h3>
         
-        {/* Background Ambient Light */}
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,rgba(30,20,20,0.5),transparent_50%)] pointer-events-none" />
+        <p className="font-sans text-gray-400 font-light text-sm md:text-base leading-relaxed mb-6 md:mb-8">
+          {event.text}
+        </p>
 
-        <motion.div style={{ x }} className="flex gap-20 md:gap-40 px-[10vw] md:px-[20vw]">
-          {timelineEvents.map((event, i) => (
-            <div key={event.id} className="w-[85vw] md:w-[60vw] flex-shrink-0 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-24 h-[100dvh] md:h-auto py-24 md:py-0">
-              
-              {/* Image with clip-path reveal */}
-              <div 
-                className="w-full md:w-1/2 h-[40vh] md:h-auto md:aspect-[3/4] relative overflow-hidden bg-black group cursor-none"
-                data-cursor="hover"
-              >
-                <motion.img 
-                  src={event.image} 
-                  alt={event.title}
-                  className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 origin-center"
-                  initial={{ scale: 1.2 }}
-                  whileInView={{ scale: 1 }}
-                  transition={{ duration: 1.5 }}
-                />
-              </div>
+        <div className="text-white/10 font-serif text-6xl md:text-8xl font-bold tracking-tighter select-none">
+          {event.year}
+        </div>
+      </motion.div>
+    </div>
+  )
+}
 
-              {/* Text Content */}
-              <div className="w-full md:w-1/2 flex flex-col">
-                <span className="text-netflix-red/60 font-sans tracking-[0.4em] uppercase text-xs font-bold mb-6">
-                  Phase 0{i + 1}
-                </span>
-                
-                <h3 className="font-serif text-4xl md:text-7xl text-white font-light italic mb-4 md:mb-8 leading-none">
-                  {event.title}
-                </h3>
-                
-                <p className="font-sans text-gray-400 font-light text-sm md:text-lg leading-relaxed max-w-md">
-                  {event.text}
-                </p>
-
-                <div className="mt-8 md:mt-16 text-white/20 font-serif text-6xl md:text-9xl font-bold tracking-tighter">
-                  {event.year}
-                </div>
-              </div>
-
-            </div>
-          ))}
-        </motion.div>
+export default function Story() {
+  return (
+    <section className="relative bg-[#050505] z-20">
+      
+      {/* Section Header */}
+      <div className="flex flex-col items-center justify-center py-20 md:py-32 px-4">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="font-serif text-4xl md:text-7xl text-white font-light italic mb-3 md:mb-4 text-center"
+        >
+          Our Story
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="font-sans text-white/40 tracking-[0.4em] text-[10px] md:text-xs uppercase"
+        >
+          How it all began
+        </motion.p>
       </div>
+
+      {/* Story Cards — Vertical Scroll */}
+      {timelineEvents.map((event, i) => (
+        <StoryCard key={event.id} event={event} index={i} />
+      ))}
     </section>
   )
 }
