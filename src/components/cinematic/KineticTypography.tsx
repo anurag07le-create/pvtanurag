@@ -8,9 +8,9 @@ const lines = [
   { text: "one", style: "italic" },
   { text: "destiny", style: "normal" },
   { text: "—", style: "normal" },
-  { text: "Vandana", style: "italic" },
-  { text: "&", style: "normal" },
   { text: "Sagar", style: "italic" },
+  { text: "&", style: "normal" },
+  { text: "Vandana", style: "italic" },
 ]
 
 function KineticWord({ word, index, totalWords, containerRef }: { 
