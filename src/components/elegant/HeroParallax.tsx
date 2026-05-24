@@ -167,15 +167,34 @@ export default function HeroParallax() {
           className="absolute bottom-0 w-full max-w-[90vw] md:max-w-[800px] h-[55vh] md:h-[65vh] flex justify-center z-[30] pointer-events-none transform-gpu"
           style={{ y: coupleY, scale: coupleScale, willChange: 'transform', transformOrigin: "bottom center" }}
         >
-          {/* Replaced blur-[100px] with a highly optimized radial gradient */}
-          <div 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] rounded-full mix-blend-screen pointer-events-none" 
-            style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.2) 0%, rgba(212,175,55,0) 70%)' }}
+          {/* Breathing Magical Golden Aura */}
+          <motion.div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] rounded-full mix-blend-screen pointer-events-none z-0" 
+            style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.25) 0%, rgba(212,175,55,0) 65%)' }}
+            animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           />
+          
+          {/* Floating Stardust Particles behind them */}
+          <motion.div 
+            className="absolute inset-0 z-[5] pointer-events-none opacity-50 mix-blend-screen mask-image-[linear-gradient(to_bottom,transparent,black,transparent)]"
+            style={{ 
+              backgroundImage: 'radial-gradient(2px 2px at 20% 30%, #d4af37 100%, transparent), radial-gradient(1.5px 1.5px at 60% 70%, #ffffff 100%, transparent), radial-gradient(2.5px 2.5px at 80% 20%, #d4af37 100%, transparent), radial-gradient(1px 1px at 30% 80%, #ffffff 100%, transparent)',
+              backgroundSize: '150px 150px'
+            }}
+            animate={{ y: [0, -150] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          />
+
+          {/* Couple Image with Cinematic Dual-Tone Rim Lighting */}
+          {/* Left shadow is warm gold, Right shadow is cool moonlight blue */}
           <img 
             src="/images/photo3-nobg.png" 
             alt="Sagar & Vandana" 
-            className="w-full h-full object-contain object-bottom origin-bottom drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+            className="w-full h-full object-contain object-bottom origin-bottom relative z-10 filter"
+            style={{
+              filter: "drop-shadow(-15px 0px 25px rgba(212,175,55,0.4)) drop-shadow(15px 0px 25px rgba(10,50,150,0.4)) drop-shadow(0px -10px 30px rgba(255,255,255,0.1))"
+            }}
           />
         </motion.div>
         
