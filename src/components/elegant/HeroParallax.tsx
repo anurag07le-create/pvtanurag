@@ -23,9 +23,9 @@ export default function HeroParallax() {
   const textTracking = useTransform(scrollYProgress, [0, 0.4], ["0.1em", "0.5em"]);
   const textBlur = useTransform(scrollYProgress, [0, 0.4], ["blur(0px)", "blur(12px)"]);
 
-  // Palace Animation: Slides up smoothly, scales down slightly to simulate settling into the scene
-  const palaceY = useTransform(scrollYProgress, [0.1, 0.8], ["100vh", "5vh"]);
-  const palaceScale = useTransform(scrollYProgress, [0.1, 0.8], [1.1, 1]);
+  // Couple Animation: Starts fully visible, slowly moves down and scales up for parallax depth
+  const coupleY = useTransform(scrollYProgress, [0, 1], ["0vh", "20vh"]);
+  const coupleScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   // Generate 35 lanterns with extreme depth (some blurred foreground, some sharp background)
   const lanterns = useMemo(() => {
@@ -165,7 +165,7 @@ export default function HeroParallax() {
         {/* z-[30] Layer: Foreground Background-Removed Couple */}
         <motion.div 
           className="absolute bottom-0 w-full max-w-none md:max-w-[1200px] h-[105vh] md:h-[95vh] flex justify-center z-[30] pointer-events-none transform-gpu"
-          style={{ y: palaceY, scale: palaceScale, willChange: 'transform' }}
+          style={{ y: coupleY, scale: coupleScale, willChange: 'transform' }}
         >
           {/* Replaced blur-[100px] with a highly optimized radial gradient */}
           <div 
