@@ -88,7 +88,11 @@ export default function ElegantLoader({ onComplete }: { onComplete: () => void }
                 src="/images/elegant/ganpati.png" 
                 alt="Lord Ganesha" 
                 className="w-full h-full object-contain mix-blend-screen"
-                style={{ WebkitTransform: "translateZ(0)" }}
+                style={{ 
+                  WebkitTransform: "translateZ(0)",
+                  WebkitMaskImage: "radial-gradient(circle, black 50%, transparent 70%)",
+                  maskImage: "radial-gradient(circle, black 50%, transparent 70%)"
+                }}
               />
             </div>
             <span className="font-montserrat text-[#e6c875] text-[10px] tracking-[0.3em] uppercase mt-2 drop-shadow-md">
@@ -100,33 +104,41 @@ export default function ElegantLoader({ onComplete }: { onComplete: () => void }
           <div className="relative w-[300px] h-[200px] md:w-[400px] md:h-[260px] mt-16 md:mt-24 cursor-pointer perspective-[1200px]">
             
             {/* Envelope Back Body */}
-            <div className="absolute inset-0 bg-[#0e2436] border border-[#d4af37]/20 rounded-md shadow-[0_20px_60px_rgba(0,0,0,0.8)] flex items-end">
-              
-              {/* Inner letter peek (visible when flap opens) */}
-              <motion.div 
-                className="absolute inset-x-4 top-4 bottom-12 bg-[#061120] border border-[#d4af37]/50 rounded-md flex flex-col items-center justify-center px-6 overflow-hidden"
-                style={{ opacity: contentOpacity, y: contentY }}
-              >
-                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#d4af37] to-transparent" />
-                <span className="font-cinzel text-xl md:text-2xl text-[#d4af37] tracking-wider relative z-10 text-center">
-                  Sagar & Vandana
-                </span>
-                <span className="font-montserrat text-[#e6c875]/60 text-[8px] md:text-[10px] tracking-[0.4em] uppercase mt-4 relative z-10 text-center">
-                  Are getting married
-                </span>
-              </motion.div>
+            <div className="absolute inset-0 bg-[#0e2436] border border-[#d4af37]/20 rounded-md shadow-[0_20px_60px_rgba(0,0,0,0.8)] z-0" />
+            
+            {/* Inner letter peek (visible when flap opens) */}
+            <motion.div 
+              className="absolute inset-x-4 top-10 bottom-2 bg-[#061120] border border-[#d4af37]/50 rounded-md flex flex-col items-center justify-center px-6 overflow-hidden shadow-inner z-[5]"
+              animate={{ 
+                y: phase === 'opening' ? -180 : 0,
+                opacity: phase === 'opening' ? 1 : 0.7 
+              }}
+              transition={{ duration: 1.2, delay: 0.2, ease: [0.25, 1, 0.5, 1] }}
+            >
+              <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#d4af37] to-transparent" />
+              <span className="font-cinzel text-xl md:text-2xl text-[#d4af37] tracking-wider relative z-10 text-center">
+                Sagar & Vandana
+              </span>
+              <span className="font-montserrat text-[#e6c875]/60 text-[8px] md:text-[10px] tracking-[0.4em] uppercase mt-4 relative z-10 text-center">
+                Are getting married
+              </span>
+            </motion.div>
 
-              {/* Envelope Front Pocket (Covers the bottom half of the letter) */}
-              <div className="absolute bottom-0 left-0 w-full h-[65%] bg-[#0e2436] border-t border-[#d4af37]/40 rounded-b-md shadow-[0_-5px_20px_rgba(0,0,0,0.4)] overflow-hidden z-10">
-                 {/* Subtle edge highlight for the pocket opening */}
-                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent" />
-                 
-                 {/* Subtle Mandala Background */}
-                 <div className="absolute inset-0 opacity-[0.04]"
-                    style={{ backgroundImage: `radial-gradient(circle at 50% 100%, rgba(212,175,55,1) 0%, transparent 70%)` }}
-                 />
-              </div>
+            {/* Bottom Flap */}
+            <div 
+              className="absolute bottom-0 left-0 right-0 h-[60%] bg-[#0A1A2F] border-t border-[#d4af37]/40 shadow-[-10px_-10px_20px_rgba(0,0,0,0.3)] z-20"
+              style={{ clipPath: 'polygon(0 100%, 50% 0, 100% 100%)' }}
+            >
+              <div className="absolute inset-0 opacity-[0.05]"
+                style={{ backgroundImage: `radial-gradient(circle at 50% 100%, rgba(212,175,55,1) 0%, transparent 70%)` }}
+              />
             </div>
+
+            {/* Left/Right Side Flaps */}
+            <div 
+              className="absolute inset-0 bg-[#0c1e2d] z-10 border border-[#d4af37]/10"
+              style={{ clipPath: 'polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%)' }}
+            />
 
             {/* Envelope Top Flap (Triangle) */}
             <motion.div
