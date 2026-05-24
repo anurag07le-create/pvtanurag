@@ -12,53 +12,79 @@ export default function HeroParallax() {
     offset: ["start start", "end end"]
   });
 
-  // Background Sky Parallax (moves up slowly to create depth)
-  const skyY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+  // Background Sky Parallax: Scales up to simulate zooming into the sky, and moves up slightly
+  const skyY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
+  const skyScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
-  // Text Animation (fades out and moves up by 50% scroll)
-  const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.3], ["0%", "-50%"]);
-  const textScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95]);
+  // Typography Animation: Fades out, moves up, tracks wider, and blurs out (camera focus pull)
+  const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.4], ["0%", "-80%"]);
+  const textScale = useTransform(scrollYProgress, [0, 0.4], [1, 1.1]);
+  const textTracking = useTransform(scrollYProgress, [0, 0.4], ["0.1em", "0.5em"]);
+  const textBlur = useTransform(scrollYProgress, [0, 0.4], ["blur(0px)", "blur(12px)"]);
 
-  // Palace Animation (slides up from the bottom starting halfway through the scroll)
-  const palaceY = useTransform(scrollYProgress, [0.2, 0.8], ["100vh", "5vh"]);
+  // Palace Animation: Slides up smoothly, scales down slightly to simulate settling into the scene
+  const palaceY = useTransform(scrollYProgress, [0.1, 0.8], ["100vh", "5vh"]);
+  const palaceScale = useTransform(scrollYProgress, [0.1, 0.8], [1.1, 1]);
 
-  // Generate 25 random lanterns
+  // Generate 35 lanterns with extreme depth (some blurred foreground, some sharp background)
   const lanterns = useMemo(() => {
-    return Array.from({ length: 25 }).map((_, i) => {
+    return Array.from({ length: 35 }).map((_, i) => {
+      const isForeground = Math.random() > 0.8; // 20% are massive foreground elements
       const left = Math.random() * 100;
-      const duration = 15 + Math.random() * 25; // 15s to 40s
-      const delay = Math.random() * -30; // Start at different times
-      const size = 0.5 + Math.random() * 1.5; // Scale 0.5 to 2.0
-      const zIndex = Math.random() > 0.5 ? 15 : 25; // Some behind text, some in front
+      const duration = isForeground ? 10 + Math.random() * 10 : 20 + Math.random() * 30; 
+      const delay = Math.random() * -40; 
+      const size = isForeground ? 2.5 + Math.random() * 1.5 : 0.4 + Math.random() * 1.2; 
+      const zIndex = isForeground ? 40 : 15; 
+      const blur = isForeground ? `blur(${2 + Math.random() * 4}px)` : 'blur(0px)';
       
-      return { id: i, left, duration, delay, size, zIndex };
+      return { id: i, left, duration, delay, size, zIndex, blur };
     });
   }, []);
 
-  // Lantern Scroll Parallax multiplier (they float up faster when scrolling)
-  // We apply a slight negative Y push to the entire lantern container to create a parallax depth effect.
-  const lanternContainerY = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
+  // Fireflies/Stars array for extra magical atmosphere
+  const fireflies = useMemo(() => Array.from({ length: 50 }).map((_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    duration: 2 + Math.random() * 4,
+    delay: Math.random() * -5,
+    size: 1 + Math.random() * 3
+  })), []);
+
+  const lanternContainerY = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-[300vh] bg-[#0A1A2F]">
+    <div ref={containerRef} className="relative w-full h-[400vh] bg-[#0A1A2F]">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center">
         
         {/* z-[1] Layer: Sky Background */}
         <motion.div 
-          className="absolute inset-0 w-full h-[140%] -top-[10%] z-[1]"
-          style={{ y: skyY }}
+          className="absolute inset-0 w-full h-[130%] -top-[10%] z-[1]"
+          style={{ y: skyY, scale: skyScale }}
         >
           <img 
             src="/images/elegant/sky-bg.jpg" 
             alt="Twilight Sky" 
             className="w-full h-full object-cover opacity-90"
           />
-          {/* Subtle gradient overlay to blend the sky */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1A2F] via-transparent to-transparent opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1A2F] via-[#0A1A2F]/40 to-transparent opacity-80" />
         </motion.div>
 
-        {/* Floating Lanterns Layer */}
+        {/* z-[5] Layer: Magical Fireflies */}
+        <div className="absolute inset-0 w-full h-full z-[5] pointer-events-none mix-blend-screen opacity-60">
+          {fireflies.map(fly => (
+            <motion.div
+              key={`fly-${fly.id}`}
+              className="absolute bg-[#ffebb3] rounded-full"
+              style={{ left: `${fly.left}%`, top: `${fly.top}%`, width: fly.size, height: fly.size, boxShadow: '0 0 10px 2px rgba(255, 235, 179, 0.8)' }}
+              animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 0.5] }}
+              transition={{ duration: fly.duration, repeat: Infinity, delay: fly.delay, ease: "easeInOut" }}
+            />
+          ))}
+        </div>
+
+        {/* z-[15/40] Layer: Floating Lanterns with Depth of Field */}
         <motion.div 
           className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen"
           style={{ y: lanternContainerY }}
@@ -66,83 +92,88 @@ export default function HeroParallax() {
           {lanterns.map((lantern) => (
             <motion.div
               key={lantern.id}
-              className="absolute bottom-[-20%] drop-shadow-[0_0_15px_rgba(255,180,0,0.6)]"
+              className="absolute bottom-[-30%]"
               style={{ 
                 left: `${lantern.left}%`,
                 zIndex: lantern.zIndex,
                 scale: lantern.size,
-                opacity: 0.8
+                filter: lantern.blur,
+                opacity: lantern.zIndex === 40 ? 0.9 : 0.6
               }}
               animate={{ 
-                y: ["0vh", "-130vh"],
-                rotate: [-5, 5, -5] 
+                y: ["0vh", "-150vh"],
+                rotate: [-8, 8, -8],
+                x: ["-10px", "10px", "-10px"]
               }}
               transition={{
-                y: {
-                  duration: lantern.duration,
-                  repeat: Infinity,
-                  ease: "linear",
-                  delay: lantern.delay
-                },
-                rotate: {
-                  duration: lantern.duration * 0.4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }
+                y: { duration: lantern.duration, repeat: Infinity, ease: "linear", delay: lantern.delay },
+                rotate: { duration: lantern.duration * 0.3, repeat: Infinity, ease: "easeInOut" },
+                x: { duration: lantern.duration * 0.5, repeat: Infinity, ease: "easeInOut" }
               }}
             >
               <img 
                 src="/images/elegant/lantern.png" 
                 alt="Floating Lantern" 
-                className="w-16 md:w-24 h-auto"
+                className="w-12 md:w-20 h-auto drop-shadow-[0_0_20px_rgba(255,180,0,0.8)]"
               />
             </motion.div>
           ))}
         </motion.div>
 
-        {/* z-[20] Layer: Typography */}
+        {/* z-[20] Layer: Cinematic Typography */}
         <motion.div 
-          className="relative z-[20] flex flex-col items-center justify-center pointer-events-none drop-shadow-xl"
-          style={{ opacity: textOpacity, y: textY, scale: textScale }}
+          className="relative z-[20] flex flex-col items-center justify-center pointer-events-none"
+          style={{ opacity: textOpacity, y: textY, scale: textScale, filter: textBlur }}
         >
-          <h1 className="font-cinzel text-5xl md:text-8xl lg:text-9xl text-[#f3e5c8] tracking-widest text-center leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
-            ABHISHEK
-          </h1>
-          <span className="font-montserrat text-sm md:text-xl text-white/80 tracking-[0.5em] my-4 md:my-6 uppercase">
-            Weds
-          </span>
-          <h1 className="font-cinzel text-5xl md:text-8xl lg:text-9xl text-[#f3e5c8] tracking-widest text-center leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
-            KANIKA
-          </h1>
+          <motion.h1 
+            style={{ letterSpacing: textTracking }}
+            className="font-cinzel text-5xl md:text-8xl lg:text-[10rem] text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] to-[#d4af37] text-center leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
+          >
+            SAGAR
+          </motion.h1>
+          <motion.span 
+            className="font-vibes text-4xl md:text-6xl text-[#e6c875] my-6 md:my-8"
+            style={{ letterSpacing: textTracking }}
+          >
+            and
+          </motion.span>
+          <motion.h1 
+            style={{ letterSpacing: textTracking }}
+            className="font-cinzel text-5xl md:text-8xl lg:text-[10rem] text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] to-[#d4af37] text-center leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
+          >
+            VANDANA
+          </motion.h1>
         </motion.div>
 
-        {/* z-[30] Layer: Palace Dome Slide up */}
+        {/* z-[30] Layer: Palace Dome with Lens Bloom */}
         <motion.div 
           className="absolute bottom-0 w-full flex justify-center z-[30] pointer-events-none"
-          style={{ y: palaceY }}
+          style={{ y: palaceY, scale: palaceScale }}
         >
-          {/* We ensure the palace image scales correctly and looks imposing */}
+          {/* Subtle golden bloom behind the palace */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-[#d4af37]/20 blur-[100px] rounded-full mix-blend-screen" />
           <img 
             src="/images/elegant/palace-dome.png" 
             alt="Golden Palace Dome" 
-            className="w-full max-w-5xl h-auto drop-shadow-[0_-10px_30px_rgba(0,0,0,0.4)]"
+            className="relative z-10 w-full max-w-[1400px] h-auto drop-shadow-[0_-20px_50px_rgba(0,0,0,0.8)]"
           />
         </motion.div>
         
         {/* Scroll Indicator */}
         <motion.div 
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[40] flex flex-col items-center pointer-events-none"
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-[40] flex flex-col items-center pointer-events-none mix-blend-screen"
           style={{ opacity: textOpacity }}
         >
-          <span className="font-montserrat text-[10px] tracking-[0.3em] uppercase text-white/60 mb-2">
-            Scroll to Discover
+          <span className="font-montserrat text-[10px] md:text-xs tracking-[0.4em] uppercase text-[#e6c875] mb-4">
+            Begin the Journey
           </span>
-          <motion.div 
-            className="w-[1px] h-12 bg-gradient-to-b from-white/60 to-transparent"
-            animate={{ scaleY: [0, 1], opacity: [0, 1, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            style={{ originY: 0 }}
-          />
+          <div className="w-[1px] h-16 bg-white/20 relative overflow-hidden">
+            <motion.div 
+              className="absolute top-0 w-full h-1/2 bg-[#d4af37]"
+              animate={{ y: ["-100%", "200%"] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </div>
         </motion.div>
 
       </div>

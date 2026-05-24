@@ -44,16 +44,19 @@ export default function DetailsSection() {
 
           <div className="flex flex-col items-center space-y-4">
             <h3 className="font-cinzel text-4xl md:text-6xl text-white">
-              Abhishek
+              Sagar
             </h3>
             <span className="font-vibes text-4xl text-[#c9a763]">&</span>
             <h3 className="font-cinzel text-4xl md:text-6xl text-white">
-              Kanika
+              Vandana
             </h3>
           </div>
 
           <div className="pt-8 w-full">
-             <button className="px-8 py-4 bg-transparent border border-[#c9a763] text-[#c9a763] font-montserrat text-sm tracking-[0.2em] uppercase hover:bg-[#c9a763] hover:text-[#0A1A2F] transition-colors duration-500">
+             <button 
+                onClick={() => alert("The rest of the elegant itinerary is currently under construction!")}
+                className="px-8 py-4 bg-transparent border border-[#c9a763] text-[#c9a763] font-montserrat text-sm tracking-[0.2em] uppercase hover:bg-[#c9a763] hover:text-[#0A1A2F] transition-colors duration-500"
+              >
                View Details
              </button>
           </div>
