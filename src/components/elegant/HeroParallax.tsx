@@ -120,54 +120,60 @@ export default function HeroParallax() {
           ))}
         </motion.div>
 
-        {/* z-[20] Layer: Cinematic Typography */}
+        {/* z-[20] Layer: Cinematic Typography BACKGROUND */}
         <motion.div 
-          className="relative z-[20] flex flex-col items-center justify-center pointer-events-none"
-          style={{ opacity: textOpacity, y: textY, scale: textScale, filter: textBlur }}
+          className="absolute top-[12%] z-[20] w-full text-center flex flex-col items-center justify-center pointer-events-none"
+          style={{ 
+            y: textY,
+            opacity: textOpacity,
+            scale: textScale,
+            filter: textBlur
+          }}
         >
-          <motion.h1 
-            style={{ letterSpacing: textTracking }}
-            className="font-cinzel text-5xl md:text-8xl lg:text-[10rem] text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] to-[#d4af37] text-center leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
-          >
-            SAGAR
-          </motion.h1>
-          <motion.span 
-            className="font-vibes text-4xl md:text-6xl text-[#e6c875] my-6 md:my-8"
-            style={{ letterSpacing: textTracking }}
-          >
-            and
-          </motion.span>
-          <motion.h1 
-            style={{ letterSpacing: textTracking }}
-            className="font-cinzel text-5xl md:text-8xl lg:text-[10rem] text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] to-[#d4af37] text-center leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
-          >
-            VANDANA
-          </motion.h1>
+          <h1 className="font-cinzel text-[24vw] md:text-[16vw] leading-[0.8] text-white/5 font-bold tracking-tighter whitespace-nowrap select-none">
+            FOREVER
+          </h1>
+          <h1 className="font-cinzel text-[24vw] md:text-[16vw] leading-[0.8] text-white/5 font-bold tracking-tighter whitespace-nowrap select-none">
+            ALWAYS
+          </h1>
         </motion.div>
 
-        {/* z-[30] Layer: Palace Dome with Lens Bloom */}
+        {/* z-[30] Layer: Foreground Background-Removed Couple */}
         <motion.div 
-          className="absolute bottom-0 w-full flex justify-center z-[30] pointer-events-none"
+          className="absolute bottom-0 w-full max-w-none md:max-w-[1200px] h-[105vh] md:h-[95vh] flex justify-center z-[30] pointer-events-none"
           style={{ y: palaceY, scale: palaceScale }}
         >
-          {/* Subtle golden bloom behind the palace */}
+          {/* Subtle golden bloom behind the couple */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-[#d4af37]/20 blur-[100px] rounded-full mix-blend-screen" />
-          <img 
-            src="/images/elegant/palace-dome.png" 
-            alt="Golden Palace Dome" 
-            className="relative z-10 w-full max-w-[1400px] h-auto drop-shadow-[0_-20px_50px_rgba(0,0,0,0.8)]"
+          <motion.img 
+            src="/images/photo3-nobg.png" 
+            alt="Sagar & Vandana" 
+            className="w-full h-full object-contain object-bottom drop-shadow-[0_-10px_40px_rgba(212,175,55,0.2)] scale-110 md:scale-[1.2] origin-bottom"
           />
+        </motion.div>
+
+        {/* z-[35] Layer: Foreground Typography */}
+        <motion.div 
+          className="absolute bottom-[20%] md:bottom-[25%] z-[35] flex flex-col items-center justify-center pointer-events-none"
+          style={{ opacity: textOpacity }}
+        >
+          <p className="font-montserrat text-[#e6c875] tracking-[0.4em] text-[10px] md:text-sm uppercase mb-4 drop-shadow-md">
+            A Celebration of Love
+          </p>
+          <h2 className="font-cinzel text-[12vw] md:text-8xl text-white font-light tracking-tight leading-none drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]">
+            Sagar & Vandana
+          </h2>
         </motion.div>
         
         {/* Scroll Indicator */}
         <motion.div 
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-[40] flex flex-col items-center pointer-events-none mix-blend-screen"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[40] flex flex-col items-center pointer-events-none mix-blend-screen"
           style={{ opacity: textOpacity }}
         >
-          <span className="font-montserrat text-[10px] md:text-xs tracking-[0.4em] uppercase text-[#e6c875] mb-4">
-            Begin the Journey
+          <span className="font-montserrat text-[10px] md:text-xs tracking-[0.4em] uppercase text-[#e6c875] mb-4 drop-shadow-md">
+            Scroll
           </span>
-          <div className="w-[1px] h-16 bg-white/20 relative overflow-hidden">
+          <div className="w-[1px] h-12 md:h-16 bg-white/20 relative overflow-hidden">
             <motion.div 
               className="absolute top-0 w-full h-1/2 bg-[#d4af37]"
               animate={{ y: ["-100%", "200%"] }}
