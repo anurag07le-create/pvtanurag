@@ -24,7 +24,7 @@ export default function ElegantExperience() {
 
   return (
     <LenisProvider>
-      <main className="min-h-[100dvh] bg-[#0A1A2F] font-sans text-white selection:bg-[#c9a763] selection:text-black overflow-x-hidden">
+      <main className="min-h-[100dvh] bg-[#0A1A2F] font-sans text-white selection:bg-[#c9a763] selection:text-black">
         <style
           dangerouslySetInnerHTML={{
             __html: `
