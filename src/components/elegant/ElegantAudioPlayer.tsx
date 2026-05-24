@@ -64,8 +64,9 @@ export default function ElegantAudioPlayer() {
       {/* Audio Element */}
       <audio 
         ref={audioRef} 
-        src="/audio/iwannabeyours.mp3" 
+        src="/song.mp3" 
         loop 
+        autoPlay
         preload="auto"
       />
       
