@@ -7,6 +7,8 @@ import DetailsSection from "./DetailsSection";
 import ElegantGallery from "./ElegantGallery";
 import ElegantItinerary from "./ElegantItinerary";
 import ElegantGoldenThread from "./ElegantGoldenThread";
+import ElegantInvitationMessage from "./ElegantInvitationMessage";
+import ElegantFooter from "./ElegantFooter";
 
 export default function ElegantExperience() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -47,9 +49,11 @@ export default function ElegantExperience() {
           <div className="relative w-full">
              <ElegantGoldenThread />
              <HeroParallax />
+             <ElegantInvitationMessage />
              <DetailsSection />
              <ElegantGallery />
              <ElegantItinerary />
+             <ElegantFooter />
           </div>
         )}
       </main>

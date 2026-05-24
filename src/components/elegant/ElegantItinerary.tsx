@@ -5,28 +5,49 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 const EVENTS = [
   {
-    id: "haldi",
-    title: "Haldi",
-    date: "12th November",
+    id: "mehandi",
+    title: "Mehandi",
+    date: "5 Dec 2026",
     time: "10:00 AM",
-    venue: "The Royal Courtyard",
-    bgColor: "bg-[#0c2336]",
+    venue: "Hotel Natraj & Resort",
+    bgColor: "bg-[#091826]",
+    image: "/images/mehandi-caricature.png"
   },
   {
-    id: "sangeet",
-    title: "Sangeet",
-    date: "12th November",
-    time: "7:00 PM",
-    venue: "The Grand Ballroom",
-    bgColor: "bg-[#091b2b]",
+    id: "behrana",
+    title: "Behrana",
+    date: "5 Dec 2026",
+    time: "8:00 PM",
+    venue: "Hotel Natraj & Resort",
+    bgColor: "bg-[#0b1c2b]",
+    image: "/images/behrana-caricature.png"
+  },
+  {
+    id: "haldi",
+    title: "Haldi",
+    date: "6 Dec 2026",
+    time: "10:00 AM",
+    venue: "Hotel Natraj & Resort",
+    bgColor: "bg-[#0c2031]",
+    image: "/images/haldi-caricature.png"
   },
   {
     id: "wedding",
-    title: "The Wedding",
-    date: "13th November",
+    title: "Wedding",
+    date: "6 Dec 2026",
     time: "4:00 PM",
-    venue: "The Palace Gardens",
-    bgColor: "bg-[#06141f]",
+    venue: "Hotel Natraj & Resort",
+    bgColor: "bg-[#0e2436]",
+    image: "/images/wedding-caricature.png"
+  },
+  {
+    id: "reception",
+    title: "Reception",
+    date: "6 Dec 2026",
+    time: "8:00 PM",
+    venue: "Hotel Natraj & Resort",
+    bgColor: "bg-[#10273c]",
+    image: "/images/reception-caricature.png"
   }
 ];
 
@@ -50,7 +71,7 @@ export default function ElegantItinerary() {
         />
       </div>
 
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 py-32 flex flex-col items-center">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-32 flex flex-col items-center">
         
         <h2 className="font-cinzel text-5xl md:text-7xl tracking-widest text-[#d4af37] drop-shadow-md mb-24">
           ITINERARY
@@ -58,9 +79,7 @@ export default function ElegantItinerary() {
 
         <div className="w-full flex flex-col relative mt-10">
           {EVENTS.map((event, index) => {
-            // Calculate a staggered stacking effect based on the index
             const targetScale = 1 - (EVENTS.length - index) * 0.05;
-            
             return (
               <EventCard 
                 key={event.id} 
@@ -82,7 +101,6 @@ export default function ElegantItinerary() {
 function EventCard({ event, index, progress, targetScale, total }: any) {
   const cardRef = useRef<HTMLDivElement>(null);
   
-  // The card scales down smoothly as subsequent cards overlap it
   const rangeStart = index / total;
   const rangeEnd = 1;
   const scale = useTransform(progress, [rangeStart, rangeEnd], [1, targetScale]);
@@ -95,30 +113,40 @@ function EventCard({ event, index, progress, targetScale, total }: any) {
     >
       <motion.div 
         style={{ scale }}
-        className={`w-full h-full max-w-4xl rounded-2xl ${event.bgColor} border border-[#d4af37]/40 p-12 md:p-24 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex flex-col items-center text-center relative overflow-hidden`}
+        className={`w-full h-full rounded-2xl ${event.bgColor} border border-[#d4af37]/40 p-8 md:p-16 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex flex-col md:flex-row items-center gap-12 relative overflow-hidden`}
       >
         {/* Decorative corner borders */}
-        <div className="absolute top-4 left-4 w-16 h-16 border-t border-l border-[#d4af37]/60" />
-        <div className="absolute top-4 right-4 w-16 h-16 border-t border-r border-[#d4af37]/60" />
-        <div className="absolute bottom-4 left-4 w-16 h-16 border-b border-l border-[#d4af37]/60" />
-        <div className="absolute bottom-4 right-4 w-16 h-16 border-b border-r border-[#d4af37]/60" />
+        <div className="absolute top-4 left-4 w-12 h-12 border-t border-l border-[#d4af37]/60" />
+        <div className="absolute top-4 right-4 w-12 h-12 border-t border-r border-[#d4af37]/60" />
+        <div className="absolute bottom-4 left-4 w-12 h-12 border-b border-l border-[#d4af37]/60" />
+        <div className="absolute bottom-4 right-4 w-12 h-12 border-b border-r border-[#d4af37]/60" />
 
-        <h3 className="font-cinzel text-4xl md:text-6xl text-white tracking-wider mb-6">
-          {event.title}
-        </h3>
-        
-        <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-8" />
-        
-        <p className="font-montserrat text-xl md:text-2xl text-[#e6c875] tracking-widest uppercase mb-4">
-          {event.date}
-        </p>
-        <p className="font-montserrat text-lg text-white/70 tracking-widest uppercase mb-12">
-          {event.time}
-        </p>
-        
-        <p className="font-vibes text-3xl md:text-5xl text-white/90">
-          {event.venue}
-        </p>
+        <div className="w-full md:w-1/2 flex justify-center">
+          <img 
+            src={event.image} 
+            alt={event.title} 
+            className="w-full max-w-[300px] h-auto drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
+          />
+        </div>
+
+        <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left z-10">
+          <h3 className="font-cinzel text-4xl md:text-6xl text-white tracking-wider mb-6">
+            {event.title}
+          </h3>
+          
+          <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-8 md:ml-0 md:bg-gradient-to-r md:from-[#d4af37] md:to-transparent" />
+          
+          <p className="font-montserrat text-xl md:text-2xl text-[#e6c875] tracking-widest uppercase mb-4">
+            {event.date}
+          </p>
+          <p className="font-montserrat text-lg text-white/70 tracking-widest uppercase mb-12">
+            {event.time}
+          </p>
+          
+          <p className="font-vibes text-3xl md:text-5xl text-white/90">
+            {event.venue}
+          </p>
+        </div>
 
       </motion.div>
     </div>
