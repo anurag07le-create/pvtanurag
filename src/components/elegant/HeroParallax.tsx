@@ -12,8 +12,8 @@ export default function HeroParallax() {
     offset: ["start start", "end start"]
   });
 
-  // Background Sky Parallax (moves very slowly)
-  const skyY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  // Background Sky Parallax (moves up slowly to create depth)
+  const skyY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
 
   // Text Animation (fades out and moves up by 50% scroll)
   const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
@@ -46,7 +46,7 @@ export default function HeroParallax() {
         
         {/* z-[1] Layer: Sky Background */}
         <motion.div 
-          className="absolute inset-0 w-full h-[120%] -top-[10%] z-[1]"
+          className="absolute inset-0 w-full h-[140%] -top-[10%] z-[1]"
           style={{ y: skyY }}
         >
           <img 
