@@ -10,6 +10,7 @@ import ElegantGoldenThread from "./ElegantGoldenThread";
 import ElegantInvitationMessage from "./ElegantInvitationMessage";
 import ElegantFooter from "./ElegantFooter";
 import ElegantLoader from "./ElegantLoader";
+import ElegantCountdown from "./ElegantCountdown";
 
 export default function ElegantExperience() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -31,7 +32,7 @@ export default function ElegantExperience() {
 
   return (
     <LenisProvider>
-      <main className="min-h-[100dvh] bg-[#0A1A2F] font-sans text-white selection:bg-[#c9a763] selection:text-black overflow-x-hidden">
+      <main className="min-h-[100dvh] bg-[#0A1A2F] font-sans text-white selection:bg-[#c9a763] selection:text-black">
         <style
           dangerouslySetInnerHTML={{
             __html: `
@@ -55,9 +56,9 @@ export default function ElegantExperience() {
               envelopeOpened ? "opacity-100" : "opacity-0"
             }`}
           >
-             <ElegantGoldenThread />
              <HeroParallax />
              <ElegantInvitationMessage />
+             <ElegantCountdown />
              <ElegantStory />
              <ElegantPhotoGrid />
              <ElegantItinerary />
