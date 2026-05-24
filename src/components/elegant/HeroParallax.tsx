@@ -164,18 +164,18 @@ export default function HeroParallax() {
 
         {/* z-[30] Layer: Foreground Background-Removed Couple */}
         <motion.div 
-          className="absolute bottom-0 w-full max-w-none md:max-w-[1200px] h-[105vh] md:h-[95vh] flex justify-center z-[30] pointer-events-none transform-gpu"
-          style={{ y: coupleY, scale: coupleScale, willChange: 'transform' }}
+          className="absolute bottom-0 w-full max-w-[90vw] md:max-w-[800px] h-[55vh] md:h-[65vh] flex justify-center z-[30] pointer-events-none transform-gpu"
+          style={{ y: coupleY, scale: coupleScale, willChange: 'transform', transformOrigin: "bottom center" }}
         >
           {/* Replaced blur-[100px] with a highly optimized radial gradient */}
           <div 
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] rounded-full mix-blend-screen pointer-events-none" 
             style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.2) 0%, rgba(212,175,55,0) 70%)' }}
           />
-          <motion.img 
+          <img 
             src="/images/photo3-nobg.png" 
             alt="Sagar & Vandana" 
-            className="w-full h-full object-contain object-bottom scale-110 md:scale-[1.3] origin-bottom"
+            className="w-full h-full object-contain object-bottom origin-bottom drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]"
           />
         </motion.div>
         
