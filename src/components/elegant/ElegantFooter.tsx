@@ -56,24 +56,6 @@ export default function ElegantFooter() {
 
       </motion.div>
 
-      {/* RSVP Button */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, delay: 0.5 }}
-        className="relative z-20 mt-16 md:mt-24"
-      >
-        <button 
-          onClick={() => alert("RSVP functionality coming soon!")}
-          className="group relative px-12 py-5 bg-transparent overflow-hidden"
-        >
-          <div className="absolute inset-0 border border-[#d4af37] transition-all duration-500 group-hover:bg-[#d4af37]" />
-          <span className="relative z-10 font-montserrat text-[#e6c875] text-xs md:text-sm tracking-[0.3em] uppercase transition-colors duration-500 group-hover:text-[#0A1A2F]">
-            RSVP NOW
-          </span>
-        </button>
-      </motion.div>
 
       {/* A single floating lantern going up into the sky */}
       <motion.div
