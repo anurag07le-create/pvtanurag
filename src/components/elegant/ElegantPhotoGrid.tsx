@@ -24,21 +24,22 @@ function PhotoCard({ src, index }: { src: string; index: number }) {
   return (
     <motion.div
       ref={ref}
-      className="relative w-full break-inside-avoid rounded-sm overflow-hidden mb-3 md:mb-4 border border-[#d4af37]/20 shadow-lg"
-      style={{ scale, opacity: imgOpacity }}
+      className="relative w-full break-inside-avoid rounded-sm overflow-hidden mb-3 md:mb-4 border border-[#d4af37]/20 shadow-lg transform-gpu"
+      style={{ scale, opacity: imgOpacity, willChange: 'transform, opacity' }}
     >
-      <motion.div className="relative w-full overflow-hidden">
+      <motion.div className="relative w-full overflow-hidden transform-gpu">
         <motion.img 
           src={src} 
           alt={`Memory ${index + 1}`}
           className="w-full h-auto object-cover"
+          loading="lazy"
         />
       </motion.div>
       
       {/* Subtle overlay that fades out */}
       <motion.div 
-        className="absolute inset-0 bg-[#0A1A2F]"
-        style={{ opacity: useTransform(scrollYProgress, [0, 0.5], [0.8, 0]) }}
+        className="absolute inset-0 bg-[#0A1A2F] transform-gpu"
+        style={{ opacity: useTransform(scrollYProgress, [0, 0.5], [0.8, 0]), willChange: 'opacity' }}
       />
     </motion.div>
   )

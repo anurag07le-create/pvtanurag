@@ -15,22 +15,25 @@ export default function ElegantFooter() {
   const textOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.5, 1])
 
   return (
-    <section ref={containerRef} className="relative w-full h-[100vh] bg-[#0A1A2F] flex flex-col items-center justify-center overflow-hidden">
+    <section ref={containerRef} className="relative w-full h-[100vh] bg-[#0A1A2F] flex flex-col items-center justify-center overflow-hidden transform-gpu">
       
-      {/* Background Magic */}
+      {/* Background Magic - Optimized to remove GPU lag */}
       <div className="absolute inset-0 pointer-events-none opacity-50">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-[#d4af37]/20 rounded-full blur-[120px] mix-blend-screen" />
+        <div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] rounded-full mix-blend-screen" 
+          style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.2) 0%, rgba(212,175,55,0) 70%)' }}
+        />
       </div>
 
       {/* Massive Text Reveal */}
       <motion.div 
-        style={{ scale: textScale, opacity: textOpacity }}
-        className="relative z-10 w-full text-center px-4"
+        style={{ scale: textScale, opacity: textOpacity, willChange: 'transform, opacity' }}
+        className="relative z-10 w-full text-center px-4 transform-gpu"
       >
-        <p className="font-montserrat text-[#e6c875] tracking-[0.4em] text-xs md:text-sm uppercase mb-8">
+        <p className="font-montserrat text-[#e6c875] tracking-[0.4em] text-xs md:text-sm uppercase mb-8 drop-shadow-md">
           Join us for the premiere of their
         </p>
-        <h2 className="font-cinzel text-[15vw] md:text-[12vw] leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] to-[#d4af37] drop-shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+        <h2 className="font-cinzel text-[15vw] md:text-[12vw] leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] to-[#d4af37] drop-shadow-[0_4px_30px_rgba(212,175,55,0.4)]">
           FOREVER
         </h2>
       </motion.div>

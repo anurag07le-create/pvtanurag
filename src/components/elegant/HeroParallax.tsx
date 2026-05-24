@@ -76,8 +76,16 @@ export default function HeroParallax() {
           {fireflies.map(fly => (
             <motion.div
               key={`fly-${fly.id}`}
-              className="absolute bg-[#ffebb3] rounded-full"
-              style={{ left: `${fly.left}%`, top: `${fly.top}%`, width: fly.size, height: fly.size, boxShadow: '0 0 10px 2px rgba(255, 235, 179, 0.8)' }}
+              className="absolute rounded-full"
+              style={{ 
+                left: `${fly.left}%`, 
+                top: `${fly.top}%`, 
+                width: fly.size, 
+                height: fly.size, 
+                // Replaced heavy box-shadow with a much cheaper radial gradient that looks identical
+                background: 'radial-gradient(circle, #ffebb3 0%, rgba(255,235,179,0) 70%)',
+                willChange: 'transform, opacity'
+              }}
               animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 0.5] }}
               transition={{ duration: fly.duration, repeat: Infinity, delay: fly.delay, ease: "easeInOut" }}
             />
@@ -86,19 +94,20 @@ export default function HeroParallax() {
 
         {/* z-[15/40] Layer: Floating Lanterns with Depth of Field */}
         <motion.div 
-          className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen"
+          className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen transform-gpu"
           style={{ y: lanternContainerY }}
         >
           {lanterns.map((lantern) => (
             <motion.div
               key={lantern.id}
-              className="absolute bottom-[-30%]"
+              className="absolute bottom-[-30%] transform-gpu"
               style={{ 
                 left: `${lantern.left}%`,
                 zIndex: lantern.zIndex,
                 scale: lantern.size,
                 filter: lantern.blur,
-                opacity: lantern.zIndex === 40 ? 0.9 : 0.6
+                opacity: lantern.zIndex === 40 ? 0.9 : 0.6,
+                willChange: 'transform'
               }}
               animate={{ 
                 y: ["0vh", "-150vh"],
@@ -114,7 +123,8 @@ export default function HeroParallax() {
               <img 
                 src="/images/elegant/lantern.png" 
                 alt="Floating Lantern" 
-                className="w-12 md:w-20 h-auto drop-shadow-[0_0_20px_rgba(255,180,0,0.8)]"
+                className="w-12 md:w-20 h-auto"
+                loading="lazy"
               />
             </motion.div>
           ))}
@@ -122,12 +132,13 @@ export default function HeroParallax() {
 
         {/* z-[20] Layer: Cinematic Typography BACKGROUND */}
         <motion.div 
-          className="absolute top-[12%] z-[20] w-full text-center flex flex-col items-center justify-center pointer-events-none"
+          className="absolute top-[12%] z-[20] w-full text-center flex flex-col items-center justify-center pointer-events-none transform-gpu"
           style={{ 
             y: textY,
             opacity: textOpacity,
             scale: textScale,
-            filter: textBlur
+            filter: textBlur,
+            willChange: 'transform, opacity, filter'
           }}
         >
           <h1 className="font-cinzel text-[24vw] md:text-[16vw] leading-[0.8] text-white/5 font-bold tracking-tighter whitespace-nowrap select-none">
@@ -140,22 +151,25 @@ export default function HeroParallax() {
 
         {/* z-[30] Layer: Foreground Background-Removed Couple */}
         <motion.div 
-          className="absolute bottom-0 w-full max-w-none md:max-w-[1200px] h-[105vh] md:h-[95vh] flex justify-center z-[30] pointer-events-none"
-          style={{ y: palaceY, scale: palaceScale }}
+          className="absolute bottom-0 w-full max-w-none md:max-w-[1200px] h-[105vh] md:h-[95vh] flex justify-center z-[30] pointer-events-none transform-gpu"
+          style={{ y: palaceY, scale: palaceScale, willChange: 'transform' }}
         >
-          {/* Subtle golden bloom behind the couple */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-[#d4af37]/20 blur-[100px] rounded-full mix-blend-screen" />
+          {/* Replaced blur-[100px] with a highly optimized radial gradient */}
+          <div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] rounded-full mix-blend-screen pointer-events-none" 
+            style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.2) 0%, rgba(212,175,55,0) 70%)' }}
+          />
           <motion.img 
             src="/images/photo3-nobg.png" 
             alt="Sagar & Vandana" 
-            className="w-full h-full object-contain object-bottom drop-shadow-[0_-10px_40px_rgba(212,175,55,0.2)] scale-110 md:scale-[1.2] origin-bottom"
+            className="w-full h-full object-contain object-bottom scale-110 md:scale-[1.2] origin-bottom"
           />
         </motion.div>
 
         {/* z-[35] Layer: Foreground Typography */}
         <motion.div 
-          className="absolute bottom-[20%] md:bottom-[25%] z-[35] flex flex-col items-center justify-center pointer-events-none"
-          style={{ opacity: textOpacity }}
+          className="absolute bottom-[20%] md:bottom-[25%] z-[35] flex flex-col items-center justify-center pointer-events-none transform-gpu"
+          style={{ opacity: textOpacity, willChange: 'opacity' }}
         >
           <p className="font-montserrat text-[#e6c875] tracking-[0.4em] text-[10px] md:text-sm uppercase mb-4 drop-shadow-md">
             A Celebration of Love
