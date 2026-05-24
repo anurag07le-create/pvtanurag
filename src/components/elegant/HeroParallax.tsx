@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 export default function HeroParallax() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Set the container height to 300vh so we have plenty of room to scroll
+  // Set the container height to 200vh so we have plenty of room to scroll
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -26,7 +26,8 @@ export default function HeroParallax() {
   // Couple Animation: Starts fully visible, slowly moves down and scales up for parallax depth
   const coupleY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   const coupleScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
-  const coupleOpacity = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
+  // Make the couple stay visible much longer, only fading out at the very end
+  const coupleOpacity = useTransform(scrollYProgress, [0.85, 1], [1, 0]);
 
   // Generate 35 lanterns with extreme depth (some blurred foreground, some sharp background)
   const lanterns = useMemo(() => {
@@ -56,7 +57,7 @@ export default function HeroParallax() {
   const lanternContainerY = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-[150vh] bg-[#0A1A2F]">
+    <div ref={containerRef} className="relative w-full h-[200vh] bg-[#0A1A2F]">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center">
         
         {/* z-[1] Layer: Sky Background */}
@@ -151,8 +152,9 @@ export default function HeroParallax() {
         </motion.div>
 
         {/* z-[25] Layer: Middle Text Layer (Sagar & Vandana) */}
+        {/* Adjusted mt-[2vh] for mobile so it sits much higher, leaving more room for the image below */}
         <motion.div 
-          className="relative z-[25] text-center px-4 mt-[15vh] md:mt-[20vh] pointer-events-none transform-gpu"
+          className="relative z-[25] text-center px-4 mt-[2vh] md:mt-[20vh] pointer-events-none transform-gpu"
           style={{ opacity: textOpacity, willChange: 'opacity' }}
         >
           <p className="font-montserrat text-[#e6c875] tracking-[0.3em] md:tracking-[0.4em] text-[10px] md:text-sm uppercase mb-3 md:mb-4 drop-shadow-md">
@@ -164,8 +166,9 @@ export default function HeroParallax() {
         </motion.div>
 
         {/* z-[30] Layer: Foreground Background-Removed Couple */}
+        {/* Increased h-[60vh] on mobile so image looks larger */}
         <motion.div 
-          className="absolute bottom-0 w-full max-w-[90vw] md:max-w-[800px] h-[55vh] md:h-[65vh] flex justify-center z-[30] pointer-events-none transform-gpu"
+          className="absolute bottom-0 w-full max-w-[90vw] md:max-w-[800px] h-[60vh] md:h-[65vh] flex justify-center z-[30] pointer-events-none transform-gpu"
           style={{ 
             y: coupleY, 
             scale: coupleScale, 
