@@ -113,7 +113,7 @@ function EventCard({ event, index, progress, targetScale, total }: any) {
     >
       <motion.div 
         style={{ scale }}
-        className={`w-full h-full rounded-2xl ${event.bgColor} border border-[#d4af37]/40 p-6 md:p-16 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex flex-col md:flex-row items-center gap-6 md:gap-12 relative overflow-hidden`}
+        className={`w-full h-full rounded-2xl ${event.bgColor} border border-[#d4af37]/40 p-6 md:p-16 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-6 md:gap-12 relative overflow-hidden`}
       >
         {/* Decorative corner borders */}
         <div className="absolute top-4 left-4 w-8 md:w-12 h-8 md:h-12 border-t border-l border-[#d4af37]/60" />
@@ -126,7 +126,7 @@ function EventCard({ event, index, progress, targetScale, total }: any) {
           <img 
             src={event.image} 
             alt={event.title} 
-            className="w-full max-w-[200px] md:max-w-[300px] max-h-[35vh] md:max-h-none object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
+            className="w-full max-w-[280px] md:max-w-[450px] aspect-square object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.6)]"
           />
         </div>
 
