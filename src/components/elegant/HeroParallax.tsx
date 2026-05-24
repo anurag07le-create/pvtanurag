@@ -26,6 +26,7 @@ export default function HeroParallax() {
   // Couple Animation: Starts fully visible, slowly moves down and scales up for parallax depth
   const coupleY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   const coupleScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  const coupleOpacity = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
 
   // Generate 35 lanterns with extreme depth (some blurred foreground, some sharp background)
   const lanterns = useMemo(() => {
