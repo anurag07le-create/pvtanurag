@@ -101,9 +101,12 @@ export default function ElegantLoader({ onComplete }: { onComplete: () => void }
             className="relative w-[300px] h-[200px] md:w-[400px] md:h-[260px] mt-16 md:mt-24 cursor-pointer perspective-[1200px]"
             style={{ y: envelopeY }}
           >
+            {/* Back of Envelope */}
+            <div className="absolute inset-0 bg-[#0e2436] rounded-md shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-[#d4af37]/20 z-0" />
+
             {/* The Inside Card that gets revealed */}
             <motion.div 
-              className="absolute inset-x-4 bottom-2 top-10 bg-[#061120] border border-[#d4af37]/50 rounded-md shadow-inner flex flex-col items-center justify-center overflow-hidden"
+              className="absolute inset-x-4 bottom-2 top-10 bg-[#061120] border border-[#d4af37]/50 rounded-md shadow-inner flex flex-col items-center justify-center overflow-hidden z-[5]"
               animate={{ 
                 y: phase === 'opening' ? -80 : 0,
                 opacity: phase === 'opening' ? 1 : 0.5 
@@ -118,9 +121,6 @@ export default function ElegantLoader({ onComplete }: { onComplete: () => void }
                 Are getting married
               </span>
             </motion.div>
-
-            {/* Back of Envelope */}
-            <div className="absolute inset-0 bg-[#0e2436] rounded-md shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-[#d4af37]/20" />
 
             {/* Bottom Flap */}
             <div 
