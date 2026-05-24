@@ -55,7 +55,7 @@ export default function HeroParallax() {
   const lanternContainerY = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-[400vh] bg-[#0A1A2F]">
+    <div ref={containerRef} className="relative w-full h-[150vh] bg-[#0A1A2F]">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center">
         
         {/* z-[1] Layer: Sky Background */}
