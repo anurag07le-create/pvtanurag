@@ -58,6 +58,7 @@ export default function ElegantExperience() {
             }`}
           >
              {envelopeOpened && <SparkleCursor />}
+             {envelopeOpened && <ElegantGoldenThread />}
              <HeroParallax />
              <ElegantInvitationMessage />
              <ElegantCountdown />

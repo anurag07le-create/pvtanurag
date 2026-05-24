@@ -39,18 +39,22 @@ export default function ElegantGoldenThread() {
         }}
       />
       
-      {/* The Glowing Tip (Star/Diamond) */}
+      {/* The 3D Wax Seal Tip */}
       <motion.div
-        className="absolute w-4 h-4 md:w-6 md:h-6 -translate-x-1/2 -translate-y-1/2 left-[1px] flex items-center justify-center text-[#ffebb3]"
+        className="absolute w-12 h-12 md:w-16 md:h-16 -translate-x-1/2 -translate-y-1/2 left-[1px] flex items-center justify-center"
         style={{
           top: tipTop,
           opacity: smoothProgress,
-          filter: 'drop-shadow(0 0 15px rgba(255,235,179,1))'
+          filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.5))'
         }}
       >
-        <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
-           <path d="M12 0l2 9 9 2-9 2-2 9-2-9-9-2 9-2z"/>
-        </svg>
+        <div className="relative w-full h-full rounded-full bg-gradient-to-br from-[#d4af37] via-[#b38b22] to-[#6b5314] shadow-[inset_0_2px_5px_rgba(255,255,255,0.4)] border border-[#ffebb3]/20 flex items-center justify-center">
+          <div className="w-[80%] h-[80%] rounded-full border-[0.5px] border-[#6b5314] shadow-[inset_0_3px_6px_rgba(0,0,0,0.5)] flex items-center justify-center bg-gradient-to-br from-[#9c781b] to-[#d4af37]">
+            <span className="font-vibes text-[#ffebb3] text-lg md:text-2xl drop-shadow-[0_2px_1px_rgba(0,0,0,0.6)]">
+              S&V
+            </span>
+          </div>
+        </div>
       </motion.div>
     </div>
   )
