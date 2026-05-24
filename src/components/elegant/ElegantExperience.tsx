@@ -11,6 +11,7 @@ import ElegantInvitationMessage from "./ElegantInvitationMessage";
 import ElegantFooter from "./ElegantFooter";
 import ElegantLoader from "./ElegantLoader";
 import ElegantCountdown from "./ElegantCountdown";
+import SparkleCursor from "./SparkleCursor";
 
 export default function ElegantExperience() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -56,6 +57,7 @@ export default function ElegantExperience() {
               envelopeOpened ? "opacity-100" : "opacity-0"
             }`}
           >
+             {envelopeOpened && <SparkleCursor />}
              <HeroParallax />
              <ElegantInvitationMessage />
              <ElegantCountdown />
