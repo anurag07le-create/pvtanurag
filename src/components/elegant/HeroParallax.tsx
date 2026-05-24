@@ -24,7 +24,7 @@ export default function HeroParallax() {
   const textBlur = useTransform(scrollYProgress, [0, 0.4], ["blur(0px)", "blur(12px)"]);
 
   // Couple Animation: Starts fully visible, slowly moves down and scales up for parallax depth
-  const coupleY = useTransform(scrollYProgress, [0, 1], ["0vh", "20vh"]);
+  const coupleY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   const coupleScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   // Generate 35 lanterns with extreme depth (some blurred foreground, some sharp background)
@@ -165,7 +165,15 @@ export default function HeroParallax() {
         {/* z-[30] Layer: Foreground Background-Removed Couple */}
         <motion.div 
           className="absolute bottom-0 w-full max-w-[90vw] md:max-w-[800px] h-[55vh] md:h-[65vh] flex justify-center z-[30] pointer-events-none transform-gpu"
-          style={{ y: coupleY, scale: coupleScale, willChange: 'transform', transformOrigin: "bottom center" }}
+          style={{ 
+            y: coupleY, 
+            scale: coupleScale, 
+            opacity: coupleOpacity, 
+            willChange: 'transform, opacity', 
+            transformOrigin: "bottom center",
+            WebkitMaskImage: "linear-gradient(to bottom, black 85%, transparent 100%)",
+            maskImage: "linear-gradient(to bottom, black 85%, transparent 100%)"
+          }}
         >
           {/* Breathing Magical Golden Aura */}
           <motion.div 
