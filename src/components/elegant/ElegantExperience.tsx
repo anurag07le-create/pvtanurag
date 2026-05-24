@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import LenisProvider from "@/components/cinematic/LenisProvider";
 import HeroParallax from "./HeroParallax";
 import DetailsSection from "./DetailsSection";
-import ElegantGallery from "./ElegantGallery";
+import ElegantStory from "./ElegantStory";
+import ElegantPhotoGrid from "./ElegantPhotoGrid";
 import ElegantItinerary from "./ElegantItinerary";
 import ElegantGoldenThread from "./ElegantGoldenThread";
 import ElegantInvitationMessage from "./ElegantInvitationMessage";
@@ -50,8 +51,8 @@ export default function ElegantExperience() {
              <ElegantGoldenThread />
              <HeroParallax />
              <ElegantInvitationMessage />
-             <DetailsSection />
-             <ElegantGallery />
+             <ElegantStory />
+             <ElegantPhotoGrid />
              <ElegantItinerary />
              <ElegantFooter />
           </div>
