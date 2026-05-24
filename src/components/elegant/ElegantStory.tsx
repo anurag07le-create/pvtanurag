@@ -87,8 +87,24 @@ export default function ElegantStory() {
                  const step = 1 / timelineEvents.length;
                  const start = index * step;
                  const end = (index + 1) * step;
-                 // Smooth fade in and fade out mapping
-                 const opacity = useTransform(scrollYProgress, [start - 0.05, start + 0.05, end - 0.05, end + 0.05], [0, 1, 1, 0])
+                 
+                 // Fix: Ensure values stay strictly between 0 and 1 to prevent "monotonically non-decreasing" error
+                 const isFirst = index === 0;
+                 const isLast = index === timelineEvents.length - 1;
+
+                 const inputArr = isFirst 
+                   ? [0, end - 0.05, Math.min(1, end + 0.05)] 
+                   : isLast 
+                     ? [Math.max(0, start - 0.05), Math.min(1, start + 0.05), 1]
+                     : [Math.max(0, start - 0.05), Math.min(1, start + 0.05), Math.min(1, end - 0.05), Math.min(1, end + 0.05)];
+                     
+                 const outputArr = isFirst 
+                   ? [1, 1, 0] 
+                   : isLast 
+                     ? [0, 1, 1]
+                     : [0, 1, 1, 0];
+
+                 const opacity = useTransform(scrollYProgress, inputArr, outputArr)
                  const scale = useTransform(scrollYProgress, [start, end], [1, 1.1])
                  
                  return (
@@ -111,10 +127,31 @@ export default function ElegantStory() {
                  const start = index * step;
                  const end = (index + 1) * step;
                  
+                 const isFirst = index === 0;
+                 const isLast = index === timelineEvents.length - 1;
+
+                 const inputArr = isFirst 
+                   ? [0, end - 0.1, Math.min(1, end)] 
+                   : isLast 
+                     ? [Math.max(0, start), Math.min(1, start + 0.1), 1]
+                     : [Math.max(0, start), Math.min(1, start + 0.1), Math.min(1, end - 0.1), Math.min(1, end)];
+                     
+                 const outputArr = isFirst 
+                   ? [1, 1, 0] 
+                   : isLast 
+                     ? [0, 1, 1]
+                     : [0, 1, 1, 0];
+
+                 const blurOutput = isFirst
+                   ? ["blur(0px)", "blur(0px)", "blur(10px)"]
+                   : isLast
+                     ? ["blur(10px)", "blur(0px)", "blur(0px)"]
+                     : ["blur(10px)", "blur(0px)", "blur(0px)", "blur(10px)"];
+
                  // Text slides up significantly faster for a noticeable parallax effect
                  const y = useTransform(scrollYProgress, [start, end], ["30vh", "-30vh"])
-                 const opacity = useTransform(scrollYProgress, [start, start + 0.1, end - 0.1, end], [0, 1, 1, 0])
-                 const blur = useTransform(scrollYProgress, [start, start + 0.1, end - 0.1, end], ["blur(10px)", "blur(0px)", "blur(0px)", "blur(10px)"])
+                 const opacity = useTransform(scrollYProgress, inputArr, outputArr)
+                 const blur = useTransform(scrollYProgress, inputArr, blurOutput)
                  
                  return (
                     <motion.div 
