@@ -144,9 +144,14 @@ function EventCard({ event, index, progress, targetScale, total }: any) {
             {event.time}
           </p>
           
-          <p className="font-vibes text-2xl md:text-5xl text-white/90">
+          <a 
+            href="https://maps.app.goo.gl/bhebNmonJSe1KHay5"
+            target="_blank"
+            rel="noreferrer"
+            className="font-vibes text-2xl md:text-5xl text-white/90 hover:text-[#d4af37] transition-colors cursor-pointer"
+          >
             {event.venue}
-          </p>
+          </a>
         </div>
 
       </motion.div>

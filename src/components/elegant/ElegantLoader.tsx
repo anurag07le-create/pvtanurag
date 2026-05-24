@@ -106,10 +106,10 @@ export default function ElegantLoader({ onComplete }: { onComplete: () => void }
 
             {/* The Inside Card that gets revealed */}
             <motion.div 
-              className="absolute inset-x-4 bottom-2 top-10 bg-[#061120] border border-[#d4af37]/50 rounded-md shadow-inner flex flex-col items-center justify-center overflow-hidden z-[5]"
+              className="absolute inset-x-4 bottom-2 top-2 bg-[#061120] border border-[#d4af37]/50 rounded-md shadow-inner flex flex-col items-center justify-center overflow-hidden z-[5]"
               animate={{ 
-                y: phase === 'opening' ? -80 : 0,
-                opacity: phase === 'opening' ? 1 : 0.5 
+                y: phase === 'opening' ? -120 : 0,
+                opacity: phase === 'opening' ? 1 : 0 
               }}
               transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
             >
@@ -122,24 +122,20 @@ export default function ElegantLoader({ onComplete }: { onComplete: () => void }
               </span>
             </motion.div>
 
-            {/* Bottom Flap */}
-            <div 
-              className="absolute bottom-0 left-0 right-0 h-1/2 bg-[#0A1A2F] border-t border-[#d4af37]/40 shadow-[-10px_-10px_20px_rgba(0,0,0,0.3)] z-20"
-              style={{ clipPath: 'polygon(0 100%, 50% 0, 100% 100%)' }}
-            >
-              {/* Subtle Mandala Pattern on Envelope Body */}
+            {/* Front Pocket of Envelope */}
+            <div className="absolute bottom-0 left-0 w-full h-[70%] bg-[#0A1A2F] border-t border-[#d4af37]/40 shadow-[-10px_-10px_30px_rgba(0,0,0,0.5)] z-20 overflow-hidden rounded-b-md">
+              {/* Envelope Seam Lines to make it look 3D */}
+              <svg viewBox="0 0 400 180" className="absolute inset-0 w-full h-full pointer-events-none opacity-50" preserveAspectRatio="none">
+                <path d="M0,0 L200,100 L400,0" fill="none" stroke="#d4af37" strokeWidth="1" />
+                <path d="M0,180 L200,100 L400,180" fill="none" stroke="#d4af37" strokeWidth="1" />
+              </svg>
+              {/* Subtle Mandala Pattern on Pocket */}
               <div className="absolute inset-0 opacity-[0.05]"
                 style={{
                   backgroundImage: `radial-gradient(circle at 50% 100%, rgba(212,175,55,1) 0%, transparent 70%)`
                 }}
               />
             </div>
-
-            {/* Left/Right Side Flaps */}
-            <div 
-              className="absolute inset-0 bg-[#0c1e2d] z-10 border border-[#d4af37]/10"
-              style={{ clipPath: 'polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%)' }}
-            />
 
             {/* Top Flap */}
             <motion.div 
