@@ -113,37 +113,38 @@ function EventCard({ event, index, progress, targetScale, total }: any) {
     >
       <motion.div 
         style={{ scale }}
-        className={`w-full h-full rounded-2xl ${event.bgColor} border border-[#d4af37]/40 p-8 md:p-16 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex flex-col md:flex-row items-center gap-12 relative overflow-hidden`}
+        className={`w-full h-full rounded-2xl ${event.bgColor} border border-[#d4af37]/40 p-6 md:p-16 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex flex-col md:flex-row items-center gap-6 md:gap-12 relative overflow-hidden`}
       >
         {/* Decorative corner borders */}
-        <div className="absolute top-4 left-4 w-12 h-12 border-t border-l border-[#d4af37]/60" />
-        <div className="absolute top-4 right-4 w-12 h-12 border-t border-r border-[#d4af37]/60" />
-        <div className="absolute bottom-4 left-4 w-12 h-12 border-b border-l border-[#d4af37]/60" />
-        <div className="absolute bottom-4 right-4 w-12 h-12 border-b border-r border-[#d4af37]/60" />
+        <div className="absolute top-4 left-4 w-8 md:w-12 h-8 md:h-12 border-t border-l border-[#d4af37]/60" />
+        <div className="absolute top-4 right-4 w-8 md:w-12 h-8 md:h-12 border-t border-r border-[#d4af37]/60" />
+        <div className="absolute bottom-4 left-4 w-8 md:w-12 h-8 md:h-12 border-b border-l border-[#d4af37]/60" />
+        <div className="absolute bottom-4 right-4 w-8 md:w-12 h-8 md:h-12 border-b border-r border-[#d4af37]/60" />
 
-        <div className="w-full md:w-1/2 flex justify-center">
+        {/* Image takes priority on desktop, but on mobile we restrict height so text fits */}
+        <div className="w-full md:w-1/2 flex justify-center order-first md:order-none">
           <img 
             src={event.image} 
             alt={event.title} 
-            className="w-full max-w-[300px] h-auto drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
+            className="w-full max-w-[200px] md:max-w-[300px] max-h-[35vh] md:max-h-none object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
           />
         </div>
 
         <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left z-10">
-          <h3 className="font-cinzel text-4xl md:text-6xl text-white tracking-wider mb-6">
+          <h3 className="font-cinzel text-3xl md:text-6xl text-white tracking-wider mb-4 md:mb-6">
             {event.title}
           </h3>
           
-          <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-8 md:ml-0 md:bg-gradient-to-r md:from-[#d4af37] md:to-transparent" />
+          <div className="w-16 md:w-24 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-6 md:mb-8 md:ml-0 md:bg-gradient-to-r md:from-[#d4af37] md:to-transparent" />
           
-          <p className="font-montserrat text-xl md:text-2xl text-[#e6c875] tracking-widest uppercase mb-4">
+          <p className="font-montserrat text-lg md:text-2xl text-[#e6c875] tracking-widest uppercase mb-2 md:mb-4">
             {event.date}
           </p>
-          <p className="font-montserrat text-lg text-white/70 tracking-widest uppercase mb-12">
+          <p className="font-montserrat text-sm md:text-lg text-white/70 tracking-widest uppercase mb-6 md:mb-12">
             {event.time}
           </p>
           
-          <p className="font-vibes text-3xl md:text-5xl text-white/90">
+          <p className="font-vibes text-2xl md:text-5xl text-white/90">
             {event.venue}
           </p>
         </div>

@@ -5,31 +5,31 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 const timelineEvents = [
   {
     id: 1,
-    title: "The First Yes",
+    title: "The Families Met",
     text: "Two families, one beautiful connection. When it's meant to be, everything falls into place.",
     image: "/images/photo1.jpeg",
-    year: "14 FEB"
+    year: "2026"
   },
   {
     id: 2,
-    title: "Wedding Fixed",
-    text: "The day both hearts agreed. A simple yes that changed everything forever.",
+    title: "They Said Yes",
+    text: "15th April: the day both hearts agreed. A simple yes that changed everything forever.",
     image: "/images/photo2.jpeg",
-    year: "20 APR"
+    year: "15 APR"
   },
   {
     id: 3,
-    title: "The Roka",
-    text: "It became official. The stars aligned, and the countdown to forever began.",
+    title: "The Date Was Fixed",
+    text: "10th May: it became official. The stars aligned, and the countdown to forever began.",
     image: "/images/photo4.jpeg",
-    year: "15 AUG"
+    year: "10 MAY"
   },
   {
     id: 4,
-    title: "Pre-Wedding Shoot",
-    text: "Capturing the moments before two families become one. A beautiful beginning.",
+    title: "The Celebration Awaits",
+    text: "6th December: two families become one. You are invited to witness this beautiful beginning.",
     image: "/images/photo5.jpeg",
-    year: "10 OCT"
+    year: "6 DEC"
   }
 ]
 
