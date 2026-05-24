@@ -84,11 +84,11 @@ export default function ElegantLoader({ onComplete }: { onComplete: () => void }
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
           >
-            <div className="relative flex items-center justify-center w-24 h-24 mb-4 drop-shadow-[0_0_25px_rgba(212,175,55,0.4)]">
+            <div className="relative flex items-center justify-center w-24 h-24 mb-4">
               <img 
                 src="/images/elegant/ganpati.png" 
                 alt="Lord Ganesha" 
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain mix-blend-screen"
               />
             </div>
             <span className="font-montserrat text-[#e6c875] text-[10px] tracking-[0.3em] uppercase mt-2 drop-shadow-md">
