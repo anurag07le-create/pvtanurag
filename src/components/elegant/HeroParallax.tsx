@@ -171,8 +171,8 @@ export default function HeroParallax() {
             opacity: coupleOpacity, 
             willChange: 'transform, opacity', 
             transformOrigin: "bottom center",
-            WebkitMaskImage: "linear-gradient(to bottom, black 85%, transparent 100%)",
-            maskImage: "linear-gradient(to bottom, black 85%, transparent 100%)"
+            WebkitMaskImage: "linear-gradient(to bottom, black 70%, transparent 100%)",
+            maskImage: "linear-gradient(to bottom, black 70%, transparent 100%)"
           }}
         >
           {/* Breathing Magical Golden Aura */}
@@ -199,7 +199,7 @@ export default function HeroParallax() {
           <img 
             src="/images/photo3-nobg.png" 
             alt="Sagar & Vandana" 
-            className="w-full h-full object-contain object-bottom origin-bottom relative z-10 filter"
+            className="w-full h-full object-contain object-bottom origin-bottom relative z-10 filter translate-y-[8%] md:translate-y-[10%]"
             style={{
               filter: "drop-shadow(-15px 0px 25px rgba(212,175,55,0.4)) drop-shadow(15px 0px 25px rgba(10,50,150,0.4)) drop-shadow(0px -10px 30px rgba(255,255,255,0.1))"
             }}
