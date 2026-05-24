@@ -54,8 +54,10 @@ export default function DetailsSection() {
 
           <div className="pt-8 w-full">
              <button 
-                onClick={() => alert("The rest of the elegant itinerary is currently under construction!")}
-                className="px-8 py-4 bg-transparent border border-[#c9a763] text-[#c9a763] font-montserrat text-sm tracking-[0.2em] uppercase hover:bg-[#c9a763] hover:text-[#0A1A2F] transition-colors duration-500"
+                onClick={() => {
+                  document.getElementById('itinerary')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-8 py-4 bg-transparent border border-[#c9a763] text-[#c9a763] font-montserrat text-sm tracking-[0.2em] uppercase hover:bg-[#c9a763] hover:text-[#0A1A2F] transition-colors duration-500 cursor-pointer"
               >
                View Details
              </button>

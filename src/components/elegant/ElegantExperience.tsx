@@ -4,6 +4,9 @@ import React, { useEffect, useState } from "react";
 import LenisProvider from "@/components/cinematic/LenisProvider";
 import HeroParallax from "./HeroParallax";
 import DetailsSection from "./DetailsSection";
+import ElegantGallery from "./ElegantGallery";
+import ElegantItinerary from "./ElegantItinerary";
+import ElegantGoldenThread from "./ElegantGoldenThread";
 
 export default function ElegantExperience() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -42,8 +45,11 @@ export default function ElegantExperience() {
 
         {isLoaded && (
           <div className="relative w-full">
+             <ElegantGoldenThread />
              <HeroParallax />
              <DetailsSection />
+             <ElegantGallery />
+             <ElegantItinerary />
           </div>
         )}
       </main>
