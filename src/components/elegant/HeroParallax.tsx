@@ -132,7 +132,7 @@ export default function HeroParallax() {
 
         {/* z-[20] Layer: Cinematic Typography BACKGROUND */}
         <motion.div 
-          className="absolute top-[12%] z-[20] w-full text-center flex flex-col items-center justify-center pointer-events-none transform-gpu"
+          className="absolute top-[8%] md:top-[12%] z-[20] w-full text-center flex flex-col items-center justify-center pointer-events-none transform-gpu"
           style={{ 
             y: textY,
             opacity: textOpacity,
@@ -144,9 +144,22 @@ export default function HeroParallax() {
           <h1 className="font-cinzel text-[24vw] md:text-[16vw] leading-[0.8] text-white/5 font-bold tracking-tighter whitespace-nowrap select-none">
             FOREVER
           </h1>
-          <h1 className="font-cinzel text-[24vw] md:text-[16vw] leading-[0.8] text-white/5 font-bold tracking-tighter whitespace-nowrap select-none">
+          <h1 className="font-cinzel text-[24vw] md:text-[16vw] leading-[0.8] text-white/5 font-bold tracking-tighter whitespace-nowrap select-none italic">
             ALWAYS
           </h1>
+        </motion.div>
+
+        {/* z-[25] Layer: Middle Text Layer (Sagar & Vandana) */}
+        <motion.div 
+          className="relative z-[25] text-center px-4 mt-[15vh] md:mt-[20vh] pointer-events-none transform-gpu"
+          style={{ opacity: textOpacity, willChange: 'opacity' }}
+        >
+          <p className="font-montserrat text-[#e6c875] tracking-[0.3em] md:tracking-[0.4em] text-[10px] md:text-sm uppercase mb-3 md:mb-4 drop-shadow-md">
+            A Celebration of Love
+          </p>
+          <h2 className="font-cinzel text-[12vw] md:text-8xl text-white font-light tracking-tight leading-none drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]">
+            Sagar & Vandana
+          </h2>
         </motion.div>
 
         {/* z-[30] Layer: Foreground Background-Removed Couple */}
@@ -162,21 +175,8 @@ export default function HeroParallax() {
           <motion.img 
             src="/images/photo3-nobg.png" 
             alt="Sagar & Vandana" 
-            className="w-full h-full object-contain object-bottom scale-110 md:scale-[1.2] origin-bottom"
+            className="w-full h-full object-contain object-bottom scale-110 md:scale-[1.3] origin-bottom"
           />
-        </motion.div>
-
-        {/* z-[35] Layer: Foreground Typography */}
-        <motion.div 
-          className="absolute bottom-[20%] md:bottom-[25%] z-[35] flex flex-col items-center justify-center pointer-events-none transform-gpu"
-          style={{ opacity: textOpacity, willChange: 'opacity' }}
-        >
-          <p className="font-montserrat text-[#e6c875] tracking-[0.4em] text-[10px] md:text-sm uppercase mb-4 drop-shadow-md">
-            A Celebration of Love
-          </p>
-          <h2 className="font-cinzel text-[12vw] md:text-8xl text-white font-light tracking-tight leading-none drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]">
-            Sagar & Vandana
-          </h2>
         </motion.div>
         
         {/* Scroll Indicator */}
