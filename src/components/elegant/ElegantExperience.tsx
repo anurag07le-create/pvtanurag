@@ -13,6 +13,8 @@ import ElegantLoader from "./ElegantLoader";
 import ElegantCountdown from "./ElegantCountdown";
 import SparkleCursor from "./SparkleCursor";
 
+import ElegantAudioPlayer from "./ElegantAudioPlayer";
+
 export default function ElegantExperience() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
   const [envelopeOpened, setEnvelopeOpened] = useState(false);
@@ -59,6 +61,7 @@ export default function ElegantExperience() {
           >
              {envelopeOpened && <SparkleCursor />}
              {envelopeOpened && <ElegantGoldenThread />}
+             {envelopeOpened && <ElegantAudioPlayer />}
              <HeroParallax />
              <ElegantInvitationMessage />
              <ElegantCountdown />
