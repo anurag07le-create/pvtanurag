@@ -3,16 +3,17 @@
 import React, { useEffect, useState } from "react";
 import LenisProvider from "@/components/cinematic/LenisProvider";
 import HeroParallax from "./HeroParallax";
-import DetailsSection from "./DetailsSection";
 import ElegantStory from "./ElegantStory";
 import ElegantPhotoGrid from "./ElegantPhotoGrid";
 import ElegantItinerary from "./ElegantItinerary";
 import ElegantGoldenThread from "./ElegantGoldenThread";
 import ElegantInvitationMessage from "./ElegantInvitationMessage";
 import ElegantFooter from "./ElegantFooter";
+import ElegantLoader from "./ElegantLoader";
 
 export default function ElegantExperience() {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [envelopeOpened, setEnvelopeOpened] = useState(false);
 
   useEffect(() => {
     // Add elegant fonts
@@ -21,7 +22,7 @@ export default function ElegantExperience() {
     link.rel = "stylesheet";
     document.head.appendChild(link);
     
-    setIsLoaded(true);
+    setFontsLoaded(true);
 
     return () => {
       document.head.removeChild(link);
@@ -30,7 +31,7 @@ export default function ElegantExperience() {
 
   return (
     <LenisProvider>
-      <main className="min-h-[100dvh] bg-[#0A1A2F] font-sans text-white selection:bg-[#c9a763] selection:text-black">
+      <main className="min-h-[100dvh] bg-[#0A1A2F] font-sans text-white selection:bg-[#c9a763] selection:text-black overflow-x-hidden">
         <style
           dangerouslySetInnerHTML={{
             __html: `
@@ -46,8 +47,14 @@ export default function ElegantExperience() {
           }}
         />
 
-        {isLoaded && (
-          <div className="relative w-full">
+        {fontsLoaded && !envelopeOpened && <ElegantLoader onComplete={() => setEnvelopeOpened(true)} />}
+
+        {fontsLoaded && (
+          <div 
+            className={`relative w-full transition-opacity duration-1000 ${
+              envelopeOpened ? "opacity-100" : "opacity-0"
+            }`}
+          >
              <ElegantGoldenThread />
              <HeroParallax />
              <ElegantInvitationMessage />
