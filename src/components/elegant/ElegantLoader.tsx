@@ -75,16 +75,38 @@ export default function ElegantLoader({ onComplete }: { onComplete: () => void }
           onTouchEnd={handleTouchEnd}
           onClick={handleTap}
         >
-          {/* Subtle grid background */}
-          <div className="absolute inset-0 opacity-[0.05]"
-            style={{
-              backgroundImage: `linear-gradient(rgba(212,175,55,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.4) 1px, transparent 1px)`,
-              backgroundSize: '30px 30px'
-            }}
-          />
+          {/* Mini Ganpati */}
+          <motion.div 
+            className="absolute top-[10%] md:top-[15%] flex flex-col items-center justify-center opacity-80"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 0.8, y: 0 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+          >
+            {/* Minimalist Ganesha SVG */}
+            <svg 
+              width="48" 
+              height="48" 
+              viewBox="0 0 100 100" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              className="drop-shadow-[0_2px_10px_rgba(212,175,55,0.4)]"
+            >
+              <path d="M50 15 C 45 15, 40 25, 40 35 C 40 45, 45 55, 50 65 C 55 55, 60 45, 60 35 C 60 25, 55 15, 50 15 Z" fill="#d4af37"/>
+              <path d="M40 35 C 30 35, 20 30, 20 20" stroke="#d4af37" strokeWidth="3" strokeLinecap="round"/>
+              <path d="M60 35 C 70 35, 80 30, 80 20" stroke="#d4af37" strokeWidth="3" strokeLinecap="round"/>
+              <circle cx="50" cy="40" r="3" fill="#0A1A2F"/>
+              <path d="M50 65 C 50 75, 45 85, 35 85" stroke="#d4af37" strokeWidth="4" strokeLinecap="round"/>
+              <path d="M30 45 C 20 45, 10 55, 15 65" stroke="#d4af37" strokeWidth="3" strokeLinecap="round"/>
+              <path d="M70 45 C 80 45, 90 55, 85 65" stroke="#d4af37" strokeWidth="3" strokeLinecap="round"/>
+              <circle cx="50" cy="20" r="5" fill="#d4af37"/>
+            </svg>
+            <span className="font-montserrat text-[#e6c875] text-[8px] tracking-[0.3em] uppercase mt-4">
+              Shree Ganeshay Namah
+            </span>
+          </motion.div>
 
           {/* Envelope Container */}
-          <div className="relative w-[280px] h-[200px] md:w-[360px] md:h-[240px]">
+          <div className="relative w-[280px] h-[200px] md:w-[360px] md:h-[240px] mt-16 md:mt-24">
             
             {/* Envelope Body */}
             <div className="absolute inset-0 bg-[#0e2436] border border-[#d4af37]/40 rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
