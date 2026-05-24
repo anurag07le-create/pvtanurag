@@ -15,7 +15,14 @@ export default function ElegantFooter() {
   const textOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.5, 1])
 
   function handleWhatsAppShare() {
-    const shareText = "We are getting married! Join us to celebrate our love. - Sagar & Vandana \n\nhttps://sagarvandana.vercel.app/"
+    const shareText = `✨ You're invited to Vandana & Sagar's Wedding! 💍
+
+📅 5th-6th December 2026
+📍 Location: https://maps.app.goo.gl/bhebNmonJSe1KHay5
+
+🌐 View the invitation: https://sagarvandana.vercel.app/cinematic
+
+We can't wait to celebrate with you! 🎉`
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`
     window.open(whatsappUrl, '_blank')
   }
