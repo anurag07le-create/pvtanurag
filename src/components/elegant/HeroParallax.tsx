@@ -9,19 +9,19 @@ export default function HeroParallax() {
   // Set the container height to 300vh so we have plenty of room to scroll
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end end"]
   });
 
   // Background Sky Parallax (moves up slowly to create depth)
   const skyY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
 
   // Text Animation (fades out and moves up by 50% scroll)
-  const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.4], ["0%", "-50%"]);
-  const textScale = useTransform(scrollYProgress, [0, 0.4], [1, 0.95]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.3], ["0%", "-50%"]);
+  const textScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95]);
 
   // Palace Animation (slides up from the bottom starting halfway through the scroll)
-  const palaceY = useTransform(scrollYProgress, [0.3, 0.9], ["100%", "5%"]);
+  const palaceY = useTransform(scrollYProgress, [0.2, 0.8], ["100vh", "5vh"]);
 
   // Generate 25 random lanterns
   const lanterns = useMemo(() => {
