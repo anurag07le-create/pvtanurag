@@ -1,57 +1,23 @@
 "use client"
 import React, { useState, useRef, useEffect } from 'react'
-import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function ElegantLoader({ onComplete }: { onComplete: () => void }) {
   const [phase, setPhase] = useState<'sealed' | 'opening' | 'done'>('sealed')
-  const dragY = useMotionValue(0)
-  const dragYSpring = useSpring(dragY, { stiffness: 400, damping: 40 })
-  
-  // Envelope flap rotation driven by drag
-  const flapRotate = useTransform(dragYSpring, [0, -120], [0, -180])
-  const flapOpacity = useTransform(dragYSpring, [0, -80], [1, 0])
-  const contentOpacity = useTransform(dragYSpring, [-60, -120], [0, 1])
-  const contentY = useTransform(dragYSpring, [-60, -120], [30, 0])
-
-  const containerRef = useRef<HTMLDivElement>(null)
-  const startY = useRef(0)
   const hasFired = useRef(false)
 
-  // Tap fallback for users who don't swipe
   const handleTap = () => {
-    if (phase !== 'sealed') return
-    setPhase('opening')
-    dragY.set(-150)
-    setTimeout(() => setPhase('done'), 1200)
-    setTimeout(() => onComplete(), 2200)
-  }
-
-  // Touch swipe logic
-  const handleTouchStart = (e: React.TouchEvent) => {
-    startY.current = e.touches[0].clientY
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
     if (phase !== 'sealed' || hasFired.current) return
-    const delta = e.touches[0].clientY - startY.current
-    if (delta < 0) {
-      dragY.set(delta)
-      if (delta < -100) {
-        hasFired.current = true
-        setPhase('opening')
-        dragY.set(-150)
-        // Haptic feedback
-        if (navigator.vibrate) navigator.vibrate(30)
-        setTimeout(() => setPhase('done'), 1200)
-        setTimeout(() => onComplete(), 2200)
-      }
+    hasFired.current = true
+    setPhase('opening')
+    
+    // Haptic feedback if available
+    if (typeof navigator !== 'undefined' && navigator.vibrate) {
+      navigator.vibrate(30)
     }
-  }
 
-  const handleTouchEnd = () => {
-    if (phase === 'sealed' && !hasFired.current) {
-      dragY.set(0)
-    }
+    setTimeout(() => setPhase('done'), 1800)
+    setTimeout(() => onComplete(), 2500)
   }
 
   // Auto-open after 5 seconds if user doesn't interact
@@ -67,104 +33,87 @@ export default function ElegantLoader({ onComplete }: { onComplete: () => void }
     <AnimatePresence>
       {phase !== 'done' && (
         <motion.div
-          ref={containerRef}
-          className="fixed inset-0 z-[200] bg-[#0A1A2F] flex flex-col items-center justify-center"
+          className="fixed inset-0 z-[200] bg-[#0A1A2F] flex items-center justify-center overflow-hidden"
           exit={{ opacity: 0, transition: { duration: 0.8, ease: "easeInOut" } }}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
           onClick={handleTap}
         >
-          {/* Mini Ganpati */}
+          {/* Left Door */}
           <motion.div 
-            className="absolute top-[10%] md:top-[15%] flex flex-col items-center justify-center opacity-80"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 0.8, y: 0 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="absolute top-0 left-0 w-1/2 h-full bg-[#0A1A2F] border-r-2 border-[#d4af37]/50 shadow-[5px_0_30px_rgba(0,0,0,0.8)] z-10 flex items-center justify-end overflow-hidden"
+            initial={{ x: "0%" }}
+            animate={{ x: phase === 'opening' ? "-100%" : "0%" }}
+            transition={{ duration: 1.5, ease: [0.76, 0, 0.24, 1], delay: 0.2 }}
+          >
+            {/* Left Door Pattern */}
+            <div className="absolute inset-0 opacity-[0.1]"
+              style={{
+                backgroundImage: `linear-gradient(rgba(212,175,55,0.8) 2px, transparent 2px), linear-gradient(90deg, rgba(212,175,55,0.8) 2px, transparent 2px)`,
+                backgroundSize: '40px 40px'
+              }}
+            />
+            {/* Left Door Inner Border */}
+            <div className="absolute top-4 bottom-4 left-4 right-2 border-2 border-[#d4af37]/30 rounded-l-md pointer-events-none" />
+          </motion.div>
+
+          {/* Right Door */}
+          <motion.div 
+            className="absolute top-0 right-0 w-1/2 h-full bg-[#0A1A2F] border-l-2 border-[#d4af37]/50 shadow-[-5px_0_30px_rgba(0,0,0,0.8)] z-10 flex items-center justify-start overflow-hidden"
+            initial={{ x: "0%" }}
+            animate={{ x: phase === 'opening' ? "100%" : "0%" }}
+            transition={{ duration: 1.5, ease: [0.76, 0, 0.24, 1], delay: 0.2 }}
+          >
+             {/* Right Door Pattern */}
+             <div className="absolute inset-0 opacity-[0.1]"
+              style={{
+                backgroundImage: `linear-gradient(rgba(212,175,55,0.8) 2px, transparent 2px), linear-gradient(90deg, rgba(212,175,55,0.8) 2px, transparent 2px)`,
+                backgroundSize: '40px 40px'
+              }}
+            />
+            {/* Right Door Inner Border */}
+            <div className="absolute top-4 bottom-4 left-2 right-4 border-2 border-[#d4af37]/30 rounded-r-md pointer-events-none" />
+          </motion.div>
+
+          {/* Center Piece (Ganpati & Instruction) */}
+          <motion.div 
+            className="absolute z-20 flex flex-col items-center justify-center pointer-events-none"
+            animate={{ 
+              opacity: phase === 'opening' ? 0 : 1,
+              scale: phase === 'opening' ? 0.9 : 1
+            }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           >
             {/* Minimalist Ganesha SVG */}
             <svg 
-              width="48" 
-              height="48" 
+              width="80" 
+              height="80" 
               viewBox="0 0 100 100" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
-              className="drop-shadow-[0_2px_10px_rgba(212,175,55,0.4)]"
+              className="drop-shadow-[0_0_20px_rgba(212,175,55,0.6)] mb-6"
             >
               <path d="M50 15 C 45 15, 40 25, 40 35 C 40 45, 45 55, 50 65 C 55 55, 60 45, 60 35 C 60 25, 55 15, 50 15 Z" fill="#d4af37"/>
-              <path d="M40 35 C 30 35, 20 30, 20 20" stroke="#d4af37" strokeWidth="3" strokeLinecap="round"/>
-              <path d="M60 35 C 70 35, 80 30, 80 20" stroke="#d4af37" strokeWidth="3" strokeLinecap="round"/>
-              <circle cx="50" cy="40" r="3" fill="#0A1A2F"/>
-              <path d="M50 65 C 50 75, 45 85, 35 85" stroke="#d4af37" strokeWidth="4" strokeLinecap="round"/>
-              <path d="M30 45 C 20 45, 10 55, 15 65" stroke="#d4af37" strokeWidth="3" strokeLinecap="round"/>
-              <path d="M70 45 C 80 45, 90 55, 85 65" stroke="#d4af37" strokeWidth="3" strokeLinecap="round"/>
-              <circle cx="50" cy="20" r="5" fill="#d4af37"/>
+              <path d="M40 35 C 30 35, 20 30, 20 20" stroke="#d4af37" strokeWidth="4" strokeLinecap="round"/>
+              <path d="M60 35 C 70 35, 80 30, 80 20" stroke="#d4af37" strokeWidth="4" strokeLinecap="round"/>
+              <circle cx="50" cy="40" r="4" fill="#0A1A2F"/>
+              <path d="M50 65 C 50 75, 45 85, 35 85" stroke="#d4af37" strokeWidth="5" strokeLinecap="round"/>
+              <path d="M30 45 C 20 45, 10 55, 15 65" stroke="#d4af37" strokeWidth="4" strokeLinecap="round"/>
+              <path d="M70 45 C 80 45, 90 55, 85 65" stroke="#d4af37" strokeWidth="4" strokeLinecap="round"/>
+              <circle cx="50" cy="20" r="6" fill="#d4af37"/>
             </svg>
-            <span className="font-montserrat text-[#e6c875] text-[8px] tracking-[0.3em] uppercase mt-4">
+
+            <span className="font-montserrat text-[#e6c875] text-[10px] md:text-xs tracking-[0.4em] uppercase mb-16 drop-shadow-md">
               Shree Ganeshay Namah
             </span>
-          </motion.div>
 
-          {/* Envelope Container */}
-          <div className="relative w-[280px] h-[200px] md:w-[360px] md:h-[240px] mt-16 md:mt-24">
-            
-            {/* Envelope Body */}
-            <div className="absolute inset-0 bg-[#0e2436] border border-[#d4af37]/40 rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
-              
-              {/* Inner letter peek (visible when flap opens) */}
-              <motion.div 
-                className="absolute inset-x-4 top-4 bottom-4 bg-[#F5F2EA] border border-[#d4af37]/20 rounded-sm flex flex-col items-center justify-center px-6"
-                style={{ opacity: contentOpacity, y: contentY }}
-              >
-                <span className="font-montserrat text-[9px] md:text-[10px] text-[#0A1A2F]/60 tracking-[0.5em] uppercase mb-3">
-                  You are invited
-                </span>
-                <h3 className="font-cinzel text-xl md:text-2xl text-[#0A1A2F] font-bold text-center leading-tight">
-                  Sagar & Vandana
-                </h3>
-                <div className="w-12 h-[1px] bg-[#d4af37] mt-3 mb-2" />
-                <span className="font-montserrat text-[8px] md:text-[10px] text-[#d4af37] font-bold tracking-widest">
-                  06 | 12 | 2026
-                </span>
-              </motion.div>
-            </div>
-
-            {/* Envelope Flap (Triangle) */}
-            <motion.div
-              className="absolute -top-[1px] left-0 right-0 h-[100px] md:h-[120px] origin-top"
-              style={{ rotateX: flapRotate, perspective: 800 }}
+            <motion.div 
+              className="flex flex-col items-center mt-12"
+              animate={{ opacity: [0.3, 1, 0.3] }}
+              transition={{ duration: 2, repeat: Infinity }}
             >
-              <svg viewBox="0 0 360 120" className="w-full h-full" preserveAspectRatio="none">
-                <path 
-                  d="M0,0 L360,0 L360,0 L180,120 L0,0 Z" 
-                  fill="#0e2436" 
-                  stroke="rgba(212,175,55,0.4)" 
-                  strokeWidth="1"
-                />
-              </svg>
-              
-              {/* Wax Seal */}
-              <motion.div 
-                className="absolute left-1/2 -translate-x-1/2 bottom-2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b38f24] border-2 border-[#fff]/20 flex items-center justify-center shadow-[0_4px_15px_rgba(0,0,0,0.4)]"
-                style={{ opacity: flapOpacity }}
-              >
-                <span className="font-cinzel text-[#0A1A2F] text-xs md:text-sm font-bold">V&S</span>
-              </motion.div>
+              <span className="font-montserrat text-[#e6c875]/70 text-[10px] tracking-[0.3em] uppercase border border-[#d4af37]/30 px-6 py-2 rounded-full">
+                Tap to enter
+              </span>
             </motion.div>
-          </div>
-
-          {/* Swipe instruction */}
-          <motion.div 
-            className="mt-16 flex flex-col items-center"
-            animate={{ opacity: [0.3, 0.8, 0.3] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(212,175,55,0.8)" strokeWidth="1.5" strokeLinecap="round">
-              <path d="M12 19V5M5 12l7-7 7 7" />
-            </svg>
-            <span className="font-montserrat text-[10px] text-[#e6c875]/70 tracking-[0.3em] uppercase mt-3">
-              Swipe up to open
-            </span>
           </motion.div>
 
         </motion.div>
