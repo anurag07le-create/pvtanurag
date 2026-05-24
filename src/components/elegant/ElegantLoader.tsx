@@ -77,7 +77,8 @@ export default function ElegantLoader({ onComplete }: { onComplete: () => void }
         >
           {/* Majestic Ganpati Logo */}
           <motion.div 
-            className="absolute top-[8%] md:top-[12%] flex flex-col items-center justify-center opacity-90"
+            className="absolute top-[8%] md:top-[12%] flex flex-col items-center justify-center opacity-90 transform-gpu"
+            style={{ WebkitTransform: "translateZ(0)" }}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
@@ -87,6 +88,7 @@ export default function ElegantLoader({ onComplete }: { onComplete: () => void }
                 src="/images/elegant/ganpati.png" 
                 alt="Lord Ganesha" 
                 className="w-full h-full object-contain mix-blend-screen"
+                style={{ WebkitTransform: "translateZ(0)" }}
               />
             </div>
             <span className="font-montserrat text-[#e6c875] text-[10px] tracking-[0.3em] uppercase mt-2 drop-shadow-md">
@@ -115,14 +117,12 @@ export default function ElegantLoader({ onComplete }: { onComplete: () => void }
               </motion.div>
 
               {/* Envelope Front Pocket (Covers the bottom half of the letter) */}
-              <div className="absolute bottom-0 left-0 w-full h-[65%] bg-[#0e2436] border-t border-[#d4af37]/20 rounded-b-md shadow-[0_-5px_20px_rgba(0,0,0,0.3)] overflow-hidden z-10">
-                 {/* Diagonal Seams */}
-                 <svg viewBox="0 0 400 170" className="absolute inset-0 w-full h-full opacity-30" preserveAspectRatio="none">
-                   <path d="M0,0 L200,100 L400,0" fill="none" stroke="#d4af37" strokeWidth="1" />
-                   <path d="M0,170 L200,100 L400,170" fill="none" stroke="#d4af37" strokeWidth="1" />
-                 </svg>
+              <div className="absolute bottom-0 left-0 w-full h-[65%] bg-[#0e2436] border-t border-[#d4af37]/40 rounded-b-md shadow-[0_-5px_20px_rgba(0,0,0,0.4)] overflow-hidden z-10">
+                 {/* Subtle edge highlight for the pocket opening */}
+                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent" />
+                 
                  {/* Subtle Mandala Background */}
-                 <div className="absolute inset-0 opacity-[0.03]"
+                 <div className="absolute inset-0 opacity-[0.04]"
                     style={{ backgroundImage: `radial-gradient(circle at 50% 100%, rgba(212,175,55,1) 0%, transparent 70%)` }}
                  />
               </div>
