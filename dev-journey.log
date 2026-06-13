@@ -1,0 +1,36 @@
+
+> wedding-invitation@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.6:3000
+✓ Ready in 1464ms
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\Lenovo\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\Lenovo\Desktop\Pucho AI\Private\wedding-invitation\package-lock.json
+
+
+ GET /journey 200 in 7.6s (next.js: 1740ms, application-code: 5.9s)
+ GET /journey 200 in 2.5s (next.js: 33ms, application-code: 2.4s)
+ GET /journey 200 in 1835ms (next.js: 612ms, application-code: 1223ms)
+ GET /journey 200 in 1800ms (next.js: 531ms, application-code: 1269ms)
+ GET /journey 200 in 3.4s (next.js: 25ms, application-code: 3.4s)
+ GET /journey 200 in 1378ms (next.js: 505ms, application-code: 873ms)
+ GET /journey 200 in 2.8s (next.js: 650ms, application-code: 2.2s)
+ GET /journey 200 in 899ms (next.js: 18ms, application-code: 881ms)
+ GET /journey 200 in 2.1s (next.js: 629ms, application-code: 1519ms)
+ GET /journey 200 in 1440ms (next.js: 459ms, application-code: 981ms)
+ GET /journey 200 in 1847ms (next.js: 726ms, application-code: 1121ms)
+ GET /journey 200 in 969ms (next.js: 400ms, application-code: 568ms)
+✓ Compiled in 592.7s
+ GET /journey 200 in 1097ms (next.js: 401ms, application-code: 696ms)
+ GET /journey 200 in 1210ms (next.js: 447ms, application-code: 763ms)
+ GET /journey 200 in 1763ms (next.js: 734ms, application-code: 1029ms)
+ GET /journey 200 in 1442ms (next.js: 581ms, application-code: 862ms)
+ GET /journey 200 in 1291ms (next.js: 637ms, application-code: 654ms)
+✓ Compiled in 250.8s
+ GET /journey 200 in 1406ms (next.js: 471ms, application-code: 936ms)
